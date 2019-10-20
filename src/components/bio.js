@@ -11,6 +11,21 @@ import React from "react"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
+const Fact = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+`;
+
+const FactImg = styled.img`
+  width: 30px;
+  margin: 0;
+`;
+
+const FactText = styled.span`
+  margin-left: 10px;
+`;
+
 function Bio() {
   return (
     <StaticQuery
@@ -33,8 +48,14 @@ function Bio() {
               }}
             />
             <div>
-              <div>Software Engineer</div>
-              <div>Manchester, UK</div>
+              <Fact>
+                <FactImg src="/laptop.svg" alt="Location" />
+                <FactText>Software Engineer</FactText>
+              </Fact>
+              <Fact>
+                <FactImg src="/pin.svg" alt="Location" />
+                <FactText>Manchester, UK</FactText>
+              </Fact>
               <div>
                 <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
               </div>
@@ -49,6 +70,13 @@ function Bio() {
 const bioQuery = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 100, height: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    pin: file(absolutePath: { regex: "/pin.svg/" }) {
       childImageSharp {
         fixed(width: 100, height: 100) {
           ...GatsbyImageSharpFixed
