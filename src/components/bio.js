@@ -17,6 +17,11 @@ const Fact = styled.div`
   margin-bottom: 5px;
 `;
 
+const FactLink = styled(Fact)`
+  text-decoration: none;
+  box-shadow: none;
+`;
+
 const FactImg = styled.img`
   width: 30px;
   margin: 0;
@@ -56,9 +61,10 @@ function Bio() {
                 <FactImg src="/pin.svg" alt="Location" />
                 <FactText>Manchester, UK</FactText>
               </Fact>
-              <div>
-                <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
-              </div>
+              <FactLink as="a" href={`https://twitter.com/${social.twitter}`} target="_blank">
+                <FactImg src="/twitter.svg" alt="Location" />
+                <FactText>Twitter</FactText>
+              </FactLink>
             </div>
           </Container>
         )
