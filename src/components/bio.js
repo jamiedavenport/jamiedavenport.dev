@@ -15,21 +15,29 @@ const Fact = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-`;
+`
 
 const FactLink = styled(Fact)`
   text-decoration: none;
   box-shadow: none;
-`;
+`
 
 const FactImg = styled.img`
   width: 30px;
   margin: 0;
-`;
+`
 
 const FactText = styled.span`
   margin-left: 10px;
-`;
+`
+
+const Social = styled.div`
+  display: flex;
+`
+
+const SocialIcon = styled(FactImg)`
+  margin-right: 10px;
+`
 
 function Bio() {
   return (
@@ -61,10 +69,32 @@ function Bio() {
                 <FactImg src="/pin.svg" alt="Location" />
                 <FactText>Manchester, UK</FactText>
               </Fact>
-              <FactLink as="a" href={`https://twitter.com/${social.twitter}`} target="_blank">
-                <FactImg src="/twitter.svg" alt="Location" />
-                <FactText>Twitter</FactText>
-              </FactLink>
+              <Social>
+                <FactLink
+                  as="a"
+                  href={`https://twitter.com/${social.twitter}`}
+                  target="_blank"
+                >
+                  <SocialIcon src="/twitter.svg" alt="Location" />
+                </FactLink>
+                <FactLink
+                  as="a"
+                  href={`https://github.com/${social.github}`}
+                  target="_blank"
+                >
+                  <SocialIcon src="/github.svg" alt="Location" />
+                </FactLink>
+                <FactLink
+                  as="a"
+                  href={`https://github.com/${social.linkedin}`}
+                  target="_blank"
+                >
+                  <SocialIcon src="/linkedin.svg" alt="Location" />
+                </FactLink>
+                <FactLink as="a" href={`/rss.xml`} target="_blank">
+                  <SocialIcon src="/rss.svg" alt="Location" />
+                </FactLink>
+              </Social>
             </div>
           </Container>
         )
@@ -94,6 +124,8 @@ const bioQuery = graphql`
         author
         social {
           twitter
+          github
+          linkedin
         }
       }
     }

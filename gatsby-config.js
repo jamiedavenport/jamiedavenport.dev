@@ -7,6 +7,8 @@ module.exports = {
     siteUrl: `https://jamiedavenport.dev/`,
     social: {
       twitter: `jdavenport97`,
+      github: "jamiedavenport",
+      linkedin: "",
     },
   },
   plugins: [
