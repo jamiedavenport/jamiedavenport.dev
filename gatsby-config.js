@@ -8,7 +8,7 @@ module.exports = {
     social: {
       twitter: `jdavenport97`,
       github: "jamiedavenport",
-      linkedin: "",
+      linkedin: "jamie-davenport-30168a11a",
     },
   },
   plugins: [

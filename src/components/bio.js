@@ -86,7 +86,7 @@ function Bio() {
                 </FactLink>
                 <FactLink
                   as="a"
-                  href={`https://github.com/${social.linkedin}`}
+                  href={`https://www.linkedin.com/in/${social.linkedin}`}
                   target="_blank"
                 >
                   <SocialIcon src="/linkedin.svg" alt="Location" />
