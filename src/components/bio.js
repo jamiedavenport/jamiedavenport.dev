@@ -33,6 +33,7 @@ const FactText = styled.span`
 
 const Social = styled.div`
   display: flex;
+  margin-top: 10px;
 `
 
 const SocialIcon = styled(FactImg)`
