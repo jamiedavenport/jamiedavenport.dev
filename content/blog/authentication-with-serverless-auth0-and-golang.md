@@ -101,7 +101,7 @@ build: gomodgen
 	env GOOS=linux go build -ldflags="-s -w" -o bin/authorizer ./authorizer
 ```
 
-Finally, we need to update our serverless.yml file to deploy our new authorizer lambda and configure our protected routes to use it:
+Finally, we need to update our `serverless.yml` file to deploy our new authorizer lambda and configure our protected routes to use it:
 
 <script src="https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec.js"></script>
 
