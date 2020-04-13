@@ -127,3 +127,27 @@ content-type: application/json
 API Gateway makes it very easy to access the user ID from within an API lambda function. Context from the authorizer is passed through and among other things contains the `principalId`.
 
 <script src="https://gist.github.com/jamiedavenport/c98344bea12ed55e9d581a939c9ffcea.js"></script>
+
+## Policy caching
+
+Earlier on I mentioned that API Gateway caches the policies returned by your authorizer. Great! Caching is good for performance etc. Looking back at the policy generated, it applies to the entire API, in other words, if you are authorized then you can call any API method.
+
+This works for my applications and will probably be fine for your use-case but to see the catch we need to think about finer-grained access control. The `req` parameter for the authorizer contains a `MethodArn` field which is the identifier for the specific method you're trying to call. If we replace the resource with this then we have a policy that allows access only to that specific method. See the problem yet?
+
+<script src="https://gist.github.com/jamiedavenport/5a1bd6a79e9f8da7fe6fcf1fa1e484c7.js"></script>
+
+If the TTL on our API Gateway authorizer cache is 5 minutes then during that time the user can only call that method. Users don't normally enjoy waiting 5 minutes between accepting a friend request and then sending a message to that friend, however, we have a few options available to us:
+
+* Give users access to all resources they might ever need.
+
+This is the approach I've used because it's simple but not without flaws. If users aren't meant to access all API routes then the authoirzer needs to know which ones to grant access to.
+
+* Disable caching so that a new policy is generated on each request.
+
+This will solve the problem but will introduce additional latency on to every request. Avoid this approach if you can!
+
+* Move authentication logic into each lambda function.
+
+There's no rule that states that authentication logic has to be stored within an authorizer. This approach will remove the additional network latency that occurs when making multiple lambda calls but you'll lose other benefits of custom authorizers such as controlling access to other AWS resources.
+
+
