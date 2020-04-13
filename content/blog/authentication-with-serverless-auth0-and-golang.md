@@ -46,7 +46,8 @@ Before moving on we need to make a note of two pieces of information:
    * For Australia: `https://YOUR-TENANT-NAME.au.auth0.com`
 
 ## Protecting API Routes
-To protect our endpoints from unauthorized access we need to set up a custom authorizer for API gateway. You can read more about how these work on the official AWS documentation but the TL;DR is this:
+
+To protect our endpoints from unauthorized access we need to set up a custom authorizer for API Gateway. You can read more about how these work on the official AWS documentation but the TL;DR is this:
 * A custom authorizer is simply a lambda function that either grants or denies access to a resource.
 * API Gateway calls your authorizer to determine access to the protected lambda.
 * If access is granted then API Gateway caches the response for future requests (more on this later).
@@ -81,7 +82,7 @@ token, err := a.Parse(tokenString)
 
 ```
 
-The `auth0.Parser` object is responsible for parsing and validating the user's bearer token. You should replace the values used here with your own that we created earlier.
+The `auth0.Parser` object is responsible for parsing and validating the user's bearer token. You should replace the values here with your own that we created earlier.
 
 The authorizer should return a policy document that describes the permissions granted to the user (assuming they are granted access).
 
@@ -93,7 +94,7 @@ The resources are a list of AWS ARNs. Here I've used the ARN for the entire API 
 
 By default, the Serverless Golang templates come with a `Makefile` which contains targets for building and deploying our code. Whatever way you are managing this just remember to actually include the authorizer in the build process, for me this means modifying the build target:
 
-```make
+```makefile
 build: gomodgen
 	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/hello ./hello
@@ -104,18 +105,18 @@ Finally, we need to update our serverless.yml file to deploy our new authorizer 
 
 <script src="https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec.js"></script>
 
-To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
+To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test that this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
 
 <img src="/assets/auth0-test-access-token.png" alt="Auth0 Test Access Token" />
 
 The following cURL commands can be used to verify that it works as expected:
 ```bash
-$ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.amazonaws.com/dev/hello>'
+$ curl -I --location --request GET 'https://<API ENDPOINT>/dev/hello'
 HTTP/2 401
 content-type: application/json
 ...
 
-$ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.amazonaws.com/dev/hello>' -H 'Authorization: Bearer <TOKEN>'
+$ curl -I --location --request GET 'https://<API ENDPOINT>/dev/hello' -H 'Authorization: Bearer <TOKEN>'
 HTTP/2 200
 content-type: application/json
 ...
