@@ -26,6 +26,21 @@ I won't cover all of the setup required here but before getting started please e
 * [Serverless Framework Quickstart](https://serverless.com/framework/docs/providers/aws/guide/quick-start/)
 * [Serverless Go Example](https://serverless.com/framework/docs/providers/aws/examples/hello-world/go/)
 
-A good starting spot is to have an example lambda function deployed into AWS. Most of the Serverless templates will already have some written for you.
+A good starting point is to have an example lambda function deployed into AWS. Most of the Serverless templates will already have some written for you.
 
 <img src="/assets/serverless-starting-point.png" alt="Starting Point" />
+
+## Auth0 Setup
+We need to tell Auth0 about our API and in return get some identifiers that we'll use to handle user authentication:
+
+1. In the APIs section of the Auth0 dashboard, click Create API.
+1. Provide a name and an identifier for your API. The identifier should be something unique, in my case I've used `https://demo-serverless-go-auth0.jamiedavenport.dev`.
+
+<img src="/assets/auth0-create-api.png" alt="Auth0 API Setup" />
+
+Before moving on we need to make a note of two pieces of information:
+1. The identifier that you used when creating the API.
+1. Your tenant domain, which depends on the region you specified at creation:
+   * For the US: `https://YOUR-TENANT-NAME.auth0.com`
+   * For Europe: `https://YOUR-TENANT-NAME.eu.auth0.com`
+   * For Australia: `https://YOUR-TENANT-NAME.au.auth0.com`
