@@ -83,21 +83,33 @@ token, err := a.Parse(tokenString)
 
 The `auth0.Parser` object is responsible for parsing and validating the user's bearer token. You should replace the values used here with your own that we created earlier.
 
-[BOOKMARK]
+The authorizer should return a policy document that describes the permissions granted to the user (assuming they are granted access).
 
-https://gist.github.com/jamiedavenport/7dbafe98542174220130d5f478078ba2
-Let's break down the key parts of this policy:
-Action: []string{"execute-api:Invoke"} describes what the user can do, in our use-case we want authorised users to invoke APIs.
-Effect: effect will be either Allow or Deny depending on if we want to permit access or prevent it.
-Resource: []string{"arn:aws:execute-api:eu-west-2:<ACCOUNT_ID>:<API_ID>/*"} is what the action and effect relate to. This could be a specific API route but in this case we'll allow access to the entire API. Note that the values for ACCOUNT_ID and API_ID can be found in the AWS console.
-By default, the Serverless Golang templates come with a Makefile which contains targets for building and deploying our code. Whatever way you are managing this just remember to actually include the authorizer in the build process, for me this means modifying the build target:
+<script src="https://gist.github.com/jamiedavenport/7dbafe98542174220130d5f478078ba2.js"></script>
 
-[SNIPPET]
+The `Action` describes what the user can do, the `Effect` will be either `Allow` or `Deny` depending of wether we want to permit access or prevent it and `Resource` is that what resources the policy applies to.
+
+The resources are a list of AWS ARNs. Here I've used the ARN for the entire API which looks like `arn:aws:execute-api:eu-west-2:<ACCOUNT_ID>:<API_ID>/*`. You can find your values for `ACCOUNT_ID` and `API_ID` in the AWS console. Finer-grained access control is possible but there are some caveats that we'll discuss later on.
+
+By default, the Serverless Golang templates come with a `Makefile` which contains targets for building and deploying our code. Whatever way you are managing this just remember to actually include the authorizer in the build process, for me this means modifying the build target:
+
+```make
+build: gomodgen
+	export GO111MODULE=on
+	env GOOS=linux go build -ldflags="-s -w" -o bin/hello ./hello
+	env GOOS=linux go build -ldflags="-s -w" -o bin/authorizer ./authorizer
+```
 
 Finally, we need to update our serverless.yml file to deploy our new authorizer lambda and configure our protected routes to use it:
-https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec
+
+<script src="https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec.js"></script>
+
 To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
+
+<img src="/assets/auth0-test-access-token.png" alt="Starting Point" />
+
 The following cURL commands can be used to verify that it works as expected:
+```bash
 $ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.amazonaws.com/dev/hello>'
 HTTP/2 401
 content-type: application/json
@@ -107,3 +119,4 @@ $ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.am
 HTTP/2 200
 content-type: application/json
 ...
+```
