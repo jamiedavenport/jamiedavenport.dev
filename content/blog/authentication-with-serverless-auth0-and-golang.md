@@ -6,4 +6,4 @@ description: >-
   Quickly set up a Serverless Framework and Golang stack with Auth0
   authentication
 ---
-Test
+<img src="/assets/building-serverless-with-the-golang-gopher.png" alt="Building with the Golang Gopher" />
