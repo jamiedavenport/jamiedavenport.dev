@@ -148,6 +148,20 @@ This will solve the problem but will introduce additional latency on to every re
 
 * Move authentication logic into each lambda function.
 
-There's no rule that states that authentication logic has to be stored within an authorizer. This approach will remove the additional latency that occurs when making multiple lambda calls but you'll lose other benefits of custom authorizers such as controlling access to other AWS resources.
+There's no rule that states that authentication logic has to be stored within an authorizer. This approach will remove the additional latency that occurs when making multiple lambda calls but you'll lose other benefits of custom authorizers such as controlling direct access to other AWS resources.
 
+## Conclusion
+
+Hopefully, this tutorial helps you get your next project up and running more quickly. If you have any feedback or comments then reach out to me on Twitter <a href="https://twitter.com/jdavenport97" target="_blank" rel="noopener noreferrer">@jdavenport97</a>.
+
+I've only touched on API Gateway concepts here in favour of getting a working stack running quickly. If you're interested in learning more I'd recommend reading this <a href="https://www.alexdebrie.com/posts/lambda-custom-authorizers/" target="_blank" rel="noopener noreferrer">post</a> by Alex DeBrie.
+
+If you’re planning on using this as part of your next full-stack project then take a look at my frontend templates to get started even faster:
+
+* <a href="https://github.com/jamiedavenport/cra-template-jd" target="_blank" rel="noopener noreferrer">CRA template</a>
+* <a href="https://github.com/jamiedavenport/next-template-jd" target="_blank" rel="noopener noreferrer">NextJS template</a>
+
+Please feel free to raise issues and PRs for bug fixes or improvements against any of my open-source projects.
+
+Finally, a big thanks to Beth Davenport for the custom artwork on this post and on my blog. Go follow her work on <a href="https://www.instagram.com/design_beth/" target="_blank" rel="noopener noreferrer">Instagram</a>.
 
