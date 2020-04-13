@@ -106,7 +106,7 @@ Finally, we need to update our serverless.yml file to deploy our new authorizer 
 
 To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
 
-<img src="/assets/auth0-test-access-token.png" alt="Starting Point" />
+<img src="/assets/auth0-test-access-token.png" alt="Auth0 Test Access Token" />
 
 The following cURL commands can be used to verify that it works as expected:
 ```bash
