@@ -163,5 +163,5 @@ If you’re planning on using this as part of your next full-stack project then 
 
 Please feel free to raise issues and PRs for bug fixes or improvements against any of my open-source projects.
 
-Finally, a big thanks to Beth Davenport for the custom artwork on this post and on my blog. Go follow her work on <a href="https://www.instagram.com/design_beth/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+Finally, a big thanks to Beth Davenport for the custom artwork in this post and on my blog. Go follow her work on <a href="https://www.instagram.com/design_beth/" target="_blank" rel="noopener noreferrer">Instagram</a>.
 
