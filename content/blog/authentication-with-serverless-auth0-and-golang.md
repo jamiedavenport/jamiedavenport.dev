@@ -140,7 +140,7 @@ If the TTL on our API Gateway authorizer cache is 5 minutes then during that tim
 
 * Give users access to all resources they might ever need.
 
-This is the approach I've used because it's simple but not without flaws. If users aren't meant to access all API routes then the authoirzer needs to know which ones to grant access to.
+This is the approach I've used because it's simple but not without flaws. If users aren't meant to access all API routes then the authorizer needs to know which ones to grant access to.
 
 * Disable caching so that a new policy is generated on each request.
 
