@@ -54,7 +54,7 @@ To protect our endpoints from unauthorized access we'll set up a custom authoriz
 
 To make the process even easier I've created an open-source library that handles parsing and validation of Auth0 bearer tokens: <a href="https://github.com/jamiedavenport/go-auth0-jwt" target="_blank" rel="noopener noreferrer">go-auth0-jwt</a>.
 
-First, we need to install our dependencies:
+First, we need to install our dependencies using `go get`:
 ```bash
 go get github.com/jamiedavenport/go-auth0-jwt
 ```
