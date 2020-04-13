@@ -44,3 +44,52 @@ Before moving on we need to make a note of two pieces of information:
    * For the US: `https://YOUR-TENANT-NAME.auth0.com`
    * For Europe: `https://YOUR-TENANT-NAME.eu.auth0.com`
    * For Australia: `https://YOUR-TENANT-NAME.au.auth0.com`
+
+## Protecting API Routes
+To protect our endpoints from unauthorized access we need to set up a custom authorizer for API gateway. You can read more about how these work on the official AWS documentation but the TL;DR is this:
+* A custom authorizer is simply a lambda function that either grants or denies access to a resource.
+* API Gateway calls your authorizer to determine access to the protected lambda.
+* If access is granted then API Gateway caches the response for future requests (more on this later).
+
+To make the process even easier I've created an open-source library that handles parsing and validation of Auth0 bearer tokens: <a href="https://github.com/jamiedavenport/go-auth0-jwt" target="_blank" rel="noopener noreferrer">go-auth0-jwt</a>.
+
+First, we need to install our dependencies:
+```bash
+go get github.com/jamiedavenport/go-auth0-jwt
+```
+
+Next, create a new lambda function that will be used as our custom authorizer:
+
+<script src="https://gist.github.com/jamiedavenport/2b3a410d0e355bb583d4d1a525bf79a7.js"></script>
+
+
+Let's take a look at what is happening here:
+We parse the token from the AuthorizationToken field. I expect the token to be formatted as Bearer <token> so I have the tokenFromRequest helper method to extract that.
+Create a new auth0.Parser instance and use the Parse method to validate and return the JWT. Replace the values here with your audience and domain created previously.
+API Gateway needs to know which user the policy created applies to. The JWT’s sub field gives us what we want, the user ID.
+Finally, we return a policy, a document that describes what access the user has.
+
+[BOOKMARK]
+
+https://gist.github.com/jamiedavenport/7dbafe98542174220130d5f478078ba2
+Let's break down the key parts of this policy:
+Action: []string{"execute-api:Invoke"} describes what the user can do, in our use-case we want authorised users to invoke APIs.
+Effect: effect will be either Allow or Deny depending on if we want to permit access or prevent it.
+Resource: []string{"arn:aws:execute-api:eu-west-2:<ACCOUNT_ID>:<API_ID>/*"} is what the action and effect relate to. This could be a specific API route but in this case we'll allow access to the entire API. Note that the values for ACCOUNT_ID and API_ID can be found in the AWS console.
+By default, the Serverless Golang templates come with a Makefile which contains targets for building and deploying our code. Whatever way you are managing this just remember to actually include the authorizer in the build process, for me this means modifying the build target:
+
+[SNIPPET]
+
+Finally, we need to update our serverless.yml file to deploy our new authorizer lambda and configure our protected routes to use it:
+https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec
+To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
+The following cURL commands can be used to verify that it works as expected:
+$ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.amazonaws.com/dev/hello>'
+HTTP/2 401
+content-type: application/json
+...
+
+$ curl -I --location --request GET '<https://vmlk9hzwt9.execute-api.eu-west-2.amazonaws.com/dev/hello>' -H 'Authorization: Bearer <TOKEN>'
+HTTP/2 200
+content-type: application/json
+...
