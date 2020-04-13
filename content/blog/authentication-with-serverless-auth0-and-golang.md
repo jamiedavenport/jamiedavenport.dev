@@ -148,6 +148,6 @@ This will solve the problem but will introduce additional latency on to every re
 
 * Move authentication logic into each lambda function.
 
-There's no rule that states that authentication logic has to be stored within an authorizer. This approach will remove the additional network latency that occurs when making multiple lambda calls but you'll lose other benefits of custom authorizers such as controlling access to other AWS resources.
+There's no rule that states that authentication logic has to be stored within an authorizer. This approach will remove the additional latency that occurs when making multiple lambda calls but you'll lose other benefits of custom authorizers such as controlling access to other AWS resources.
 
 
