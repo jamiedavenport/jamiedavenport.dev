@@ -31,7 +31,7 @@ A good starting point is to have an example lambda function deployed into AWS. M
 <img src="/assets/serverless-starting-point.png" alt="Starting Point" />
 
 ## Auth0 setup
-We need to tell Auth0 about our API and in return get some values that we'll use to handle user authentication:
+We need to tell Auth0 about our API and in return get some values that we need to handle user authentication:
 
 1. In the <a href="https://manage.auth0.com/#/apis" target="_blank" rel="noopener noreferrer">APIs</a> section of the Auth0 dashboard, click Create API.
 1. Provide a name and an identifier for your API. The identifier should be something unique, in my case I've used `https://demo-serverless-go-auth0.jamiedavenport.dev`.
