@@ -63,11 +63,25 @@ Next, create a new lambda function that will be used as our custom authorizer:
 <script src="https://gist.github.com/jamiedavenport/2b3a410d0e355bb583d4d1a525bf79a7.js"></script>
 
 
-Let's take a look at what is happening here:
-We parse the token from the AuthorizationToken field. I expect the token to be formatted as Bearer <token> so I have the tokenFromRequest helper method to extract that.
-Create a new auth0.Parser instance and use the Parse method to validate and return the JWT. Replace the values here with your audience and domain created previously.
-API Gateway needs to know which user the policy created applies to. The JWT’s sub field gives us what we want, the user ID.
-Finally, we return a policy, a document that describes what access the user has.
+Let's take a closer look at what's happening here:
+
+```go
+tokenString, err := tokenFromRequest(req)
+```
+
+We expect that the token will be formatted as `Bearer <token>` so we first extract the token using the `tokenFromRequest` helper method.
+
+
+```go
+a := auth0.Parser{
+	Audience: "https://demo-serverless-go-auth0.jamiedavenport.dev",
+	Domain:   "https://demo-serverless-go-auth0.eu.auth0.com/",
+}
+token, err := a.Parse(tokenString)
+
+```
+
+The `auth0.Parser` object is responsible for parsing and validating the user's bearer token. You should replace the values used here with your own that we created earlier.
 
 [BOOKMARK]
 
