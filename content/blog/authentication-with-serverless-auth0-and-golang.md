@@ -47,7 +47,7 @@ Before moving on we need to make a note of two pieces of information:
 
 ## Protecting API routes
 
-To protect our endpoints from unauthorized access we'll set up a custom authorizer for API Gateway. You can read more about how these work on the official <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html" target="_blank" rel="noopener noreferrer">AWS documentation</> but the TL;DR is this:
+To protect our endpoints from unauthorized access we'll set up a custom authorizer for API Gateway. You can read more about how these work on the official <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html" target="_blank" rel="noopener noreferrer">AWS documentation</a> but the TL;DR is this:
 * A custom authorizer is simply a lambda function that either grants or denies access to a resource.
 * API Gateway calls your authorizer to determine access to the protected lambda.
 * If access is granted then API Gateway caches the response for future requests (more on this later).
