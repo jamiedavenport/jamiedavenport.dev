@@ -30,7 +30,7 @@ A good starting point is to have an example lambda function deployed into AWS. M
 
 <img src="/assets/serverless-starting-point.png" alt="Starting Point" />
 
-## Auth0 Setup
+## Auth0 setup
 We need to tell Auth0 about our API and in return get some identifiers that we'll use to handle user authentication:
 
 1. In the <a href="https://manage.auth0.com/#/apis" target="_blank" rel="noopener noreferrer">APIs</a> section of the Auth0 dashboard, click Create API.
@@ -45,7 +45,7 @@ Before moving on we need to make a note of two pieces of information:
    * For Europe: `https://YOUR-TENANT-NAME.eu.auth0.com`
    * For Australia: `https://YOUR-TENANT-NAME.au.auth0.com`
 
-## Protecting API Routes
+## Protecting API routes
 
 To protect our endpoints from unauthorized access we need to set up a custom authorizer for API Gateway. You can read more about how these work on the official AWS documentation but the TL;DR is this:
 * A custom authorizer is simply a lambda function that either grants or denies access to a resource.
@@ -121,3 +121,9 @@ HTTP/2 200
 content-type: application/json
 ...
 ```
+
+## Getting the user ID
+
+API Gateway makes it very easy to access the user ID from within an API lambda function. Context from the authorizer is passed through and among other things contains the `principalId`.
+
+<script src="https://gist.github.com/jamiedavenport/c98344bea12ed55e9d581a939c9ffcea.js"></script>
