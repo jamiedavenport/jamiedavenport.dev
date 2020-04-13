@@ -21,7 +21,7 @@ For those who like to just get stuck in with the code, you can find the finished
 
 ## Prerequisites
 
-I won't cover all of the setup required here but before getting started please ensure you have a Golang Serverless project set up and access to Auth0 and AWS accounts.
+I won't cover all of the setup required here but before getting started please ensure you have a Golang Serverless project ready and access to Auth0 and AWS accounts.
 
 * <a href="https://serverless.com/framework/docs/providers/aws/guide/quick-start/" target="_blank" rel="noopener noreferrer">Serverless Framework Quickstart</a>
 * <a href="https://serverless.com/framework/docs/providers/aws/examples/hello-world/go/" target="_blank" rel="noopener noreferrer">Serverless Go Example</a>
