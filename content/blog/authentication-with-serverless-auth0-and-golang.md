@@ -88,7 +88,7 @@ The authorizer should return a policy document that describes the permissions gr
 
 <script src="https://gist.github.com/jamiedavenport/7dbafe98542174220130d5f478078ba2.js"></script>
 
-The `Action` describes what the user can do, the `Effect` will be either `Allow` or `Deny` depending of wether we want to permit access or prevent it and `Resource` is that what resources the policy applies to.
+The `Action` describes what the user can do, the `Effect` will be either `Allow` or `Deny` depending of wether we want to permit access or prevent it and `Resource` is what the policy applies to.
 
 The resources are a list of AWS ARNs. Here I've used the ARN for the entire API which looks like `arn:aws:execute-api:eu-west-2:<ACCOUNT_ID>:<API_ID>/*`. You can find your values for `ACCOUNT_ID` and `API_ID` in the AWS console. Finer-grained access control is possible but there are some caveats that we'll discuss later on.
 
