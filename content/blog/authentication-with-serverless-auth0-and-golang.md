@@ -61,8 +61,7 @@ go get github.com/jamiedavenport/go-auth0-jwt
 
 Next, create a new lambda function that will be used as our custom authorizer:
 
-<script src="https://gist.github.com/jamiedavenport/2b3a410d0e355bb583d4d1a525bf79a7.js"></script>
-
+`gist:jamiedavenport/2b3a410d0e355bb583d4d1a525bf79a7`
 
 Let's take a closer look at what's happening here:
 
@@ -86,7 +85,7 @@ The `auth0.Parser` object is responsible for parsing and validating the user's b
 
 The authorizer should return a policy document that describes the permissions granted to the user (assuming they are granted access).
 
-<script src="https://gist.github.com/jamiedavenport/7dbafe98542174220130d5f478078ba2.js"></script>
+`gist:jamiedavenport/7dbafe98542174220130d5f478078ba2`
 
 The `Action` describes what the user can do, the `Effect` will be either `Allow` or `Deny` depending of wether we want to permit access or prevent it and `Resource` is what the policy applies to.
 
@@ -103,7 +102,7 @@ build: gomodgen
 
 Finally, we need to update our `serverless.yml` file to deploy our new authorizer lambda and configure our protected routes to use it:
 
-<script src="https://gist.github.com/jamiedavenport/31b862218f396e67cccde2fc3464b2ec.js"></script>
+`gist:jamiedavenport/31b862218f396e67cccde2fc3464b2ec`
 
 To test that this is working you need to obtain a valid access token. In a final product, this would be handled by the frontend application but to quickly test that this is working we can get one from the Auth0 console. Navigate to your API and then to the Test tab, there should be a valid access token that you can simply copy and use.
 
@@ -126,7 +125,7 @@ content-type: application/json
 
 API Gateway makes it very easy to access the user ID from within an API lambda function. Context from the authorizer is passed through and among other things contains the `principalId`.
 
-<script src="https://gist.github.com/jamiedavenport/c98344bea12ed55e9d581a939c9ffcea.js"></script>
+`gist:jamiedavenport/c98344bea12ed55e9d581a939c9ffcea`
 
 ## Policy caching
 
@@ -134,7 +133,7 @@ Earlier on I mentioned that API Gateway caches the policies returned by your aut
 
 This works for my applications and will probably be fine for your use-case but to see the catch we need to think about finer-grained access control. The `req` parameter for the authorizer contains a `MethodArn` field which is the identifier for the specific method you're trying to call. If we replace the resource with this then we have a policy that allows access only to that specific method. See the problem yet?
 
-<script src="https://gist.github.com/jamiedavenport/5a1bd6a79e9f8da7fe6fcf1fa1e484c7.js"></script>
+`gist:jamiedavenport/5a1bd6a79e9f8da7fe6fcf1fa1e484c7`
 
 If the TTL on our API Gateway authorizer cache is 5 minutes then during that time the user can only call that method. Users don't normally enjoy waiting 5 minutes between accepting a friend request and then sending a message to that friend, however, we have a few options available to us:
 

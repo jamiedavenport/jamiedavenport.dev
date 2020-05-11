@@ -52,6 +52,13 @@ module.exports = {
           `gatsby-remark-vscode`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              username: "jamiedavenport",
+              includeDefaultCss: true,
+            },
+          },
         ],
       },
     },
