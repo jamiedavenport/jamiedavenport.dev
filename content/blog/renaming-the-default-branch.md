@@ -36,7 +36,7 @@ mkdir -p $DIR
 git config --global init.templateDir "$DIR"
 ```
 
-These commands create a new template directory and update the .gitconfig to use it.
+These commands create a new template directory and update the `.gitconfig` to use it.
 
 ### Git `HEAD`
 You can think of the `HEAD` as the current branch. It is stored as a file in the `.git` directory.
