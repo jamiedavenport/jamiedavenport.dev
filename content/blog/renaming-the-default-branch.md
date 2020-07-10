@@ -12,7 +12,7 @@ Execute the following script in a terminal window to rename your default branch 
 curl https://raw.githubusercontent.com/jamiedavenport/scripts/main/rename-master.sh | sh -
 ```
 
-The source code for this script can be found <a href="https://github.com/jamiedavenport/scripts/blob/main/rename-master.sh" target="_blank" rel="noreferrer noopener">here</a>. Read on for an explanation of the script to understand how it works.
+The source code for this script can be found <a href="https://github.com/jamiedavenport/scripts/blob/main/rename-master.sh" target="_blank" rel="noreferrer noopener">here</a>. Read on for an explanation of how it works.
 
 ## Explanation 
 
