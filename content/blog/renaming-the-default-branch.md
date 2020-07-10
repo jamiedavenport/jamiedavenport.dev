@@ -2,7 +2,7 @@
 path: renaming-default-branch
 date: 2020-07-10T19:29:04.345Z
 title: Renaming the default branch
-description: Quickly rename the default git branch for new repositories
+description: Quickly rename the default Git branch for new repositories
 ---
 ## Quickstart
 
