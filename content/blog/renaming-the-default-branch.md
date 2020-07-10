@@ -30,11 +30,19 @@ echo 'ref: refs/heads/main' > $DIR/HEAD
 ### Init templates
 When we first initialise a new Git repository using `git init`, the command creates a directory which contains files and folders specific to git workflows. In addition to this setup, the command also copies over files from a template directory. 
 
-```code```
+```sh
+DIR=~/.git/templates/git.git
+mkdir -p $DIR
+git config --global init.templateDir "$DIR"
+```
+
 These commands create a new template directory and update the .gitconfig to use it.
 
 ### Git `HEAD`
 You can think of the `HEAD` as the current branch. It is stored as a file in the .git directory.
 
-```code```
+```sh
+echo 'ref: refs/heads/main' > $DIR/HEAD
+```
+
 By adding this file to the git init template we ensure that the HEAD will be set to our new name instead of the default of `master`.
