@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "./Nav";
 
 type Props = {
   isOpen: boolean;
@@ -9,7 +10,13 @@ const MobileNav: React.FC<Props> = ({ isOpen }) => {
 
   return (
     <div className="bg-gray-100">
-      <a href="#">Blog</a>
+      <Nav
+        renderLink={(l) => (
+          <a key={l.href} href={l.href}>
+            {l.title}
+          </a>
+        )}
+      />
     </div>
   );
 };
