@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DesktopNav from "./DesktopNav";
+import Logo from "./Logo";
 import MobileNav from "./MobileNav";
 import MobileNavButton from "./MobileNavButton";
 
@@ -8,8 +9,8 @@ const Header: React.FC = () => {
 
   return (
     <div>
-      <div className="flex flex-row justify-between">
-        <div>Jamie Davenport</div>
+      <div className="flex flex-row justify-between items-center">
+        <Logo />
         <div className="hidden md:block">
           <DesktopNav />
         </div>
