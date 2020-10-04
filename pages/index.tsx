@@ -1,15 +1,21 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
-import Intro from "components/Intro";
 import React from "react";
+import Intro from "components/Intro";
+import Head from "next/head";
 
 const Home: React.FC = () => {
   return (
-    <div className="container mx-auto space-y-10">
-      <Header />
-      <Intro />
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <title>Jamie Davenport</title>
+      </Head>
+      <div className="container mx-auto space-y-10">
+        <Header />
+        <Intro />
+        <Footer />
+      </div>
+    </>
   );
 };
 
