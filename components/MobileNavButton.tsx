@@ -25,7 +25,7 @@ const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
   if (isOpen) {
     icon = (
       <svg
-        className="h-6 w-6"
+        className="block h-6 w-6"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
