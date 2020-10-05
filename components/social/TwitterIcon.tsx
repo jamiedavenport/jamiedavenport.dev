@@ -3,7 +3,7 @@ import React from "react";
 const TwitterIcon: React.FC = () => {
   return (
     <svg
-      className="h-6 w-6"
+      className="h-6 w-6 text-gray-500 hover:text-twitter"
       aria-hidden="true"
       fill="currentColor"
       viewBox="0 0 24 24"

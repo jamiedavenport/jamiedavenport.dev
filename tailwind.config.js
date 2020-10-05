@@ -14,6 +14,11 @@ module.exports = {
       flex: {
         2: "2 2 0%",
       },
+      textColor: {
+        github: "#211F1F",
+        twitter: "#55ACEE",
+        linkedin: "#0077B5",
+      },
     },
   },
   variants: {},
