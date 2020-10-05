@@ -6,6 +6,7 @@ import Head from "next/head";
 import WIP from "components/WIP";
 import Section from "components/Section";
 import Stats from "components/Stats";
+import ColourBar from "components/ColourBar";
 
 const Home: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
         <title>Jamie Davenport</title>
       </Head>
       <div className="min-h-screen bg-gray-100">
+        <ColourBar />
         <div className="container mx-auto space-y-20 p-4">
           <Header />
 

@@ -17,7 +17,7 @@ const Stat: React.FC<StatProps> = ({ title, value }) => {
 
 const Stats: React.FC = () => {
   return (
-    <div className="flex flex-col space-y-20 md:space-y-0 md:flex-row bg-gray-300 rounded px-5 py-16 md:py-10">
+    <div className="flex flex-col space-y-20 md:space-y-0 md:flex-row bg-gray-300 rounded-lg px-5 py-16 md:py-10">
       <Stat title="Repositories" value="21" />
       <Stat title="Contributed To" value="3" />
       <Stat title="Total PRs" value="9" />
