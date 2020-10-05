@@ -2,12 +2,11 @@ import React from "react";
 
 const Intro: React.FC = () => {
   return (
-    <div className="text-2xl space-y-4">
-      <div>
-        💻 Software Engineer <span className="text-gray-600">@</span>{" "}
-        <span className="text-orange-500 font-bold">Infinity Works</span>
-      </div>
-      <div>🇬🇧 United Kingdom</div>
+    <div className="text-2xl">
+      Hi, I'm Jamie. I'm a{" "}
+      <span className="font-bold">Software Engineer 💻</span> based in the{" "}
+      <span className="font-bold">UK 🇬🇧</span>. Currently at{" "}
+      <span className="font-bold">Infinity Works</span>.
     </div>
   );
 };
