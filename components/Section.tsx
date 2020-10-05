@@ -1,4 +1,5 @@
 import React from "react";
+import Divider from "./Divider";
 
 type Props = {
   title: string;
@@ -6,11 +7,12 @@ type Props = {
 
 const Section: React.FC<Props> = ({ title, children }) => {
   return (
-    <div className="space-y-10">
-      <div className="text-center text-gray-400 font-bold text-sm font-mono uppercase">
+    <div>
+      <h2 className="text-center text-gray-500 font-bold text-sm font-mono uppercase mb-2">
         {title}
-      </div>
-      <div>{children}</div>
+      </h2>
+      <Divider />
+      <div className="mt-10">{children}</div>
     </div>
   );
 };
