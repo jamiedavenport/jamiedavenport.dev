@@ -8,16 +8,18 @@ import Layout from "components/Layout";
 const Home: React.FC = () => {
   return (
     <Layout title="Jamie Davenport">
-      <Section title="Welcome">
-        <div className="space-y-16">
-          <Intro />
-          <Stats />
-        </div>
-      </Section>
+      <div className="space-y-20">
+        <Section title="Welcome">
+          <div className="space-y-16">
+            <Intro />
+            <Stats />
+          </div>
+        </Section>
 
-      <Section title="Blog">
-        <WIP />
-      </Section>
+        <Section title="Blog">
+          <WIP />
+        </Section>
+      </div>
     </Layout>
   );
 };
