@@ -20,7 +20,7 @@ const Home: React.FC = () => {
           <Header />
 
           <Section title="Welcome">
-            <div className="space-y-10">
+            <div className="space-y-16">
               <Intro />
               <Stats />
             </div>
