@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       <Head>
         <title>Jamie Davenport</title>
       </Head>
-      <div className="container mx-auto space-y-16">
+      <div className="container mx-auto space-y-16 p-4">
         <Header />
 
         <Section title="Welcome">
