@@ -41,7 +41,14 @@ const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
     );
   }
 
-  return <button onClick={onClick}>{icon}</button>;
+  return (
+    <button
+      className="bg-gray-200 hover:bg-gray-300 rounded p-2"
+      onClick={onClick}
+    >
+      {icon}
+    </button>
+  );
 };
 
 export default MobileNavButton;

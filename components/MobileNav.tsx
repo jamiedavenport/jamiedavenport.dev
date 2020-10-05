@@ -9,7 +9,7 @@ const MobileNav: React.FC<Props> = ({ isOpen }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-200 p-4">
       <Nav
         renderLink={(l) => (
           <a key={l.href} href={l.href}>

@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <div>
+    <div className="space-y-5 md:space-y-0">
       <div className="flex flex-row justify-between items-center">
         <Logo />
         <div className="hidden md:block">
