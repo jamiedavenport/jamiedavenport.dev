@@ -4,6 +4,7 @@ import React from "react";
 import Intro from "components/Intro";
 import Head from "next/head";
 import WIP from "components/WIP";
+import Section from "components/Section";
 
 const Home: React.FC = () => {
   return (
@@ -11,10 +12,17 @@ const Home: React.FC = () => {
       <Head>
         <title>Jamie Davenport</title>
       </Head>
-      <div className="container mx-auto space-y-10">
+      <div className="container mx-auto space-y-16">
         <Header />
-        <WIP />
-        <Intro />
+
+        <Section title="Welcome">
+          <Intro />
+        </Section>
+
+        <Section title="Blog">
+          <WIP />
+        </Section>
+
         <Footer />
       </div>
     </>
