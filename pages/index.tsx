@@ -6,6 +6,7 @@ import Layout from "components/Layout";
 import PostList from "components/PostList";
 import { GetStaticProps } from "next";
 import { getPosts, PostMeta } from "lib/posts";
+import WIP from "components/WIP";
 
 type Props = {
   posts: PostMeta[];
@@ -33,6 +34,9 @@ const Home: React.FC<Props> = ({ posts }) => {
         </Section>
 
         <Section title="Blog">
+          <div className="mb-10">
+            <WIP />
+          </div>
           <PostList
             posts={posts.sort((a, b) => b.date.getTime() - a.date.getTime())}
           />
