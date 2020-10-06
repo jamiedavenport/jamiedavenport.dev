@@ -31,13 +31,13 @@ const BlogPost: React.FC<Props> = ({ post }) => {
   const content = hydrate(body);
 
   return (
-    <Layout title="Title">
+    <Layout title={title}>
       <div className="space-y-10">
         <div>
-          <h1 className="text-center leading-none text-4xl text-gray-900 font-bold font-mono">
+          <h1 className="text-center leading-none text-4xl mb-2 text-gray-900 font-bold font-mono">
             {title}
           </h1>
-          <h2 className="text-center leading-none mb-2 text-gray-700">
+          <h2 className="text-center leading-none mb-1 text-gray-700">
             {description}
           </h2>
           <Divider />
