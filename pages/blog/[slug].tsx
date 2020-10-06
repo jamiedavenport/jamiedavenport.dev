@@ -1,21 +1,48 @@
 import Divider from "components/Divider";
 import Layout from "components/Layout";
+import { getPost, getPostPaths, Post } from "lib/posts";
+import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
+import hydrate from "next-mdx-remote/hydrate";
 
-const BlogPost: React.FC = () => {
+type Props = {
+  post: Post;
+};
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params.slug as string;
+  const post = await getPost(slug);
+
+  return {
+    props: {
+      post,
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getPostPaths();
+
+  return { paths, fallback: false };
+};
+
+const BlogPost: React.FC<Props> = ({ post }) => {
+  const { title, description, body } = post;
+  const content = hydrate(body);
+
   return (
     <Layout title="Title">
       <div className="space-y-10">
         <div>
           <h1 className="text-center leading-none text-4xl text-gray-900 font-bold font-mono">
-            Title
+            {title}
           </h1>
           <h2 className="text-center leading-none mb-2 text-gray-700">
-            Description
+            {description}
           </h2>
           <Divider />
         </div>
-        <div>Body</div>
+        <div className="prose">{content}</div>
       </div>
     </Layout>
   );
