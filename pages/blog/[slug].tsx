@@ -1,8 +1,8 @@
+import React from "react";
 import Divider from "components/Divider";
 import Layout from "components/Layout";
 import { getPost, getPostPaths, Post } from "lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
 import hydrate from "next-mdx-remote/hydrate";
 
 type Props = {
@@ -42,7 +42,7 @@ const BlogPost: React.FC<Props> = ({ post }) => {
           </h2>
           <Divider />
         </div>
-        <div className="prose">{content}</div>
+        <div className="prose mx-auto">{content}</div>
       </div>
     </Layout>
   );

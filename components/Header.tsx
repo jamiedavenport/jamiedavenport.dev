@@ -3,6 +3,7 @@ import DesktopNav from "./DesktopNav";
 import Logo from "./Logo";
 import MobileNav from "./MobileNav";
 import MobileNavButton from "./MobileNavButton";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -10,7 +11,11 @@ const Header: React.FC = () => {
   return (
     <div className="space-y-5 md:space-y-0">
       <div className="flex flex-row justify-between items-center">
-        <Logo />
+        <Link href="/">
+          <a>
+            <Logo />
+          </a>
+        </Link>
         <div className="hidden md:block">
           <DesktopNav />
         </div>
