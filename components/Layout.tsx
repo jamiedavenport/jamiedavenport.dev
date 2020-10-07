@@ -13,6 +13,7 @@ const Layout: React.FC<Props> = ({ title, children }) => {
     <>
       <Head>
         <title>{title}</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="min-h-screen bg-gray-100">
         <ColourBar />
