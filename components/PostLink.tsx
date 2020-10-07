@@ -1,7 +1,7 @@
 import React from "react";
 import { PostMeta } from "lib/posts";
 import Link from "next/link";
-import format from "date-fns/format";
+import { prettyPostDate } from "lib/date";
 
 type Props = {
   post: PostMeta;
@@ -10,7 +10,7 @@ type Props = {
 const PostLink: React.FC<Props> = ({ post }) => {
   const { title, description, slug, date } = post;
 
-  const dateStr = format(date, "EEEE, do MMMM y");
+  const dateStr = prettyPostDate(date);
 
   return (
     <Link href="/blog/[slug]" as={`/blog/${slug}`}>

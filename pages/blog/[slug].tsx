@@ -4,6 +4,7 @@ import Layout from "components/Layout";
 import { getPost, getPostPaths, Post } from "lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next";
 import hydrate from "next-mdx-remote/hydrate";
+import { prettyPostDate } from "lib/date";
 
 type Props = {
   post: Post;
@@ -27,16 +28,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const BlogPost: React.FC<Props> = ({ post }) => {
-  const { title, description, body } = post;
+  const { title, description, body, date } = post;
   const content = hydrate(body);
+
+  const dateStr = prettyPostDate(date);
 
   return (
     <Layout title={title}>
       <div className="space-y-10">
         <div>
-          <h1 className="text-center leading-none text-4xl mb-2 text-gray-900 font-bold font-mono">
+          <h1 className="text-center leading-none text-4xl mb-3 text-gray-900 font-bold font-mono">
             {title}
           </h1>
+          <p className="block text-center leading-none mb-3 text-gray-500">
+            {dateStr}
+          </p>
           <h2 className="text-center leading-none mb-1 text-gray-700">
             {description}
           </h2>
