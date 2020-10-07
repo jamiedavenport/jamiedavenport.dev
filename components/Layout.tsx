@@ -17,7 +17,7 @@ const Layout: React.FC<Props> = ({ title, children }) => {
       </Head>
       <div className="min-h-screen bg-gray-100">
         <ColourBar />
-        <div className="container mx-auto space-y-20 p-4">
+        <div className="max-w-3xl mx-auto space-y-20 p-4">
           <Header />
 
           <div>{children}</div>
