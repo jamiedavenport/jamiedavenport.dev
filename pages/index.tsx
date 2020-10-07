@@ -29,7 +29,7 @@ const Home: React.FC<Props> = ({ posts }) => {
         <Section title="Welcome">
           <div className="space-y-16">
             <Intro />
-            <Stats />
+            {/* <Stats /> */}
           </div>
         </Section>
 
