@@ -9,12 +9,6 @@ export interface Link {
   href: string;
 }
 
-const links: Link[] = [
-  {
-    title: "Blog",
-    type: LinkType.External,
-    href: "https://blog.jamiedavenport.dev",
-  },
-];
+const links: Link[] = [];
 
 export default links;
