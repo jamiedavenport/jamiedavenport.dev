@@ -5,15 +5,17 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: {
-    content: [
-      "./components/**/*.{js,ts,jsx,tsx}",
-      "./pages/**/*.{js,ts,jsx,tsx}",
-    ],
-    options: {
-      safelist: [/^text-code/],
-    },
-  },
+  // TODO: Enable purge with the correct safelist
+  // purge: {
+  //   enabled: true,
+  //   content: [
+  //     "./components/**/*.{js,ts,jsx,tsx}",
+  //     "./pages/**/*.{js,ts,jsx,tsx}",
+  //   ],
+  //   options: {
+  //     whitelist: [/^text-code/],
+  //   },
+  // },
   theme: {
     extend: {
       fontFamily: {
