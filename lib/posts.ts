@@ -1,6 +1,22 @@
 import fs from "fs-extra";
 import renderToString from "next-mdx-remote/render-to-string";
 import matter from "gray-matter";
+import rehypePrism from "@mapbox/rehype-prism";
+import visit from "unist-util-visit";
+
+const tokenClassNames = {
+  tag: "text-code-red",
+  "attr-name": "text-code-yellow",
+  "attr-value": "text-code-green",
+  deleted: "text-code-red",
+  inserted: "text-code-green",
+  punctuation: "text-code-white",
+  keyword: "text-code-purple",
+  string: "text-code-green",
+  function: "text-code-blue",
+  boolean: "text-code-red",
+  comment: "text-gray-400 italic",
+};
 
 export interface PostMeta {
   slug: string;
@@ -29,7 +45,24 @@ export const getPosts = async (): Promise<Array<Post>> => {
 export const getPost = async (slug: string): Promise<Post> => {
   const postBody = await fs.readFile(`posts/${slug}.mdx`);
   const { content, data } = matter(postBody);
-  const mdxSource = await renderToString(content);
+  const mdxSource = await renderToString(content, {
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [
+        rehypePrism,
+        () => {
+          return (tree) => {
+            visit(tree, "element", (node) => {
+              let [token, type] = (node.properties as any).className || [];
+              if (token === "token") {
+                (node.properties as any).className = [tokenClassNames[type]];
+              }
+            });
+          };
+        },
+      ],
+    },
+  });
 
   return {
     slug,

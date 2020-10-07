@@ -9,6 +9,7 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@mapbox/rehype-prism": "^0.5.0",
     "@tailwindcss/typography": "^0.2.0",
     "date-fns": "^2.16.1",
     "fs-extra": "^9.0.1",
@@ -19,7 +20,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "superjson": "^1.2.3",
-    "tailwindcss": "^1.8.10"
+    "tailwindcss": "^1.8.10",
+    "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1",
