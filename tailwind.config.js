@@ -25,6 +25,7 @@ module.exports = {
         github: "#211F1F",
         twitter: "#55ACEE",
         linkedin: "#0077B5",
+        rss: "#F99000",
       },
       colors: {
         code: {
