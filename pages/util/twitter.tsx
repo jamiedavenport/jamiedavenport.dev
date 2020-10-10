@@ -10,7 +10,7 @@ const twitter: React.FC = () => {
     <div className="h-screen w-screen flex flex-col items-center justify-between p-4">
       <div />
       {title && (
-        <h1 className="font-mono text-4xl font-bold text-center">{title}</h1>
+        <h1 className="font-mono text-3xl font-bold text-center">{title}</h1>
       )}
       <Logo />
     </div>
