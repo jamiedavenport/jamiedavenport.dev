@@ -71,5 +71,6 @@ export const getPost = async (slug: string): Promise<Post> => {
     description: data.description,
     date: data.date,
     body: mdxSource,
+    image: data.image,
   };
 };
