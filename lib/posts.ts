@@ -23,6 +23,7 @@ export interface PostMeta {
   title: string;
   description: string;
   date: Date;
+  image: string;
 }
 
 export interface Post extends PostMeta {

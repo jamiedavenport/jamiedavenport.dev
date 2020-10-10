@@ -5,6 +5,7 @@ import { getPost, getPostPaths, Post } from "lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next";
 import hydrate from "next-mdx-remote/hydrate";
 import { prettyPostDate } from "lib/date";
+import Head from "next/head";
 
 type Props = {
   post: Post;
@@ -28,13 +29,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const BlogPost: React.FC<Props> = ({ post }) => {
-  const { title, description, body, date } = post;
+  const { title, description, body, date, image } = post;
   const content = hydrate(body);
 
   const dateStr = prettyPostDate(date);
 
+  const imageUrl = `https://jamiedavenport.dev/images/${image}`;
+
   return (
     <Layout title={title}>
+      <Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@jdavenport97" />
+        <meta name="twitter:creator" content="@jdavenport97" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta name="description" content={description} />
+      </Head>
       <div className="space-y-10">
         <div>
           <h1 className="text-center leading-none text-4xl mb-3 text-gray-900 font-bold font-mono">
