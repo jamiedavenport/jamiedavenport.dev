@@ -7,9 +7,10 @@ const twitter: React.FC = () => {
   const title = router.query.title;
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center space-y-4 p-4">
+    <div className="h-screen w-screen flex flex-col items-center justify-between p-4">
+      <div />
       {title && (
-        <h1 className="font-mono text-3xl font-bold text-center">{title}</h1>
+        <h1 className="font-mono text-4xl font-bold text-center">{title}</h1>
       )}
       <Logo />
     </div>
