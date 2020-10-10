@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 const Home: React.FC<Props> = ({ posts }) => {
-  const description = `Software Engineer based in the UK`;
+  const description = `Software Engineer based in the UK. Working at Infinity Works. Passionate about Open Source`;
   const imageUrl = "https://jamiedavenport.dev/favicon.png";
 
   return (
