@@ -1,51 +1,51 @@
 ---
 title: Weekly Update 1
-description: Welcome to the first in a series of weekly updates
+description: Ramblings about the previous week
 date: 2020-10-11
 image: weekly-update-1.png
 ---
 
-Welcome to the first in a series of weekly updates. I'm writing these updates to relfect on the achievements of the week and to build motiviation for the weeks ahead.
+Welcome to the first in a series of weekly updates. The goal of these is to reflect on the previous week and build motivation for the next.
 
 ## New Website
 
-The major project this week has been the rebuild of my personal website (the one you're on right now). Previously, it was a simple [Gatsby](https://www.gatsbyjs.com/) starter, while most of my other projects use [Next.js](https://nextjs.org/). By migrating to Next.js I can use my existing knowledge, can share code between projects and have alleviated any context switching issues.
+The major project this week has been the rebuild of my personal website (the one you're on right now). I'm currently writing up a technical deep dive but in the meantime you can find the source code [here](https://github.com/jamiedavenport/jamiedavenport.dev).
 
-It's significantly easier to publish blog posts for the new site. This has renewed my excitement for writing and over the next few months I'm going to work on improving my written communication skills. I've already got a few ideas in the pipeline, one of these is a technical deep dive into how this site works (coming soon) but in the meantime feel free to have a look at the [code](https://github.com/jamiedavenport/jamiedavenport.dev).
-
-Credit to [Beth Davenport](https://bethdavenport.design) for the bespoke logo and images.
+Thanks to [Beth Davenport](https://bethdavenport.design) designing the awesome logo.
 
 ![Logos](/images/logos.png)
 
 ## Open Source Contributions
 
-At the start of 2020 I set myself the resolution of contributing to open-source projects. Admittedly it has taken me a while to get into the habit but lately I've been a bit more consistent with contributions.
-
-[BlitzJS](https://blitzjs.com/) is a full-stack React framework that promises to make you more productive. It's quickly become my favourite tool to bootstrap new projects with, because it lives up to the promise.
-
-Over the last week I've made a couple of contributions to Blitz:
+Over the last week I've made a couple of contributions to [BlitzJS](https://blitzjs.com/):
 
 - [1247](https://github.com/blitz-js/blitz/pull/1247) adds a shim to Blitz for `requestIdleCallback` which is experimental and not supported by every browser
 - [1223](https://github.com/blitz-js/blitz/pull/1223) adds a more useful error message when developers try to use regular functions with `useQuery` and `useMutation`
 
+I've officially become a [L1 maintainer](https://github.com/blitz-js/blitz#maintainers-level-1-) of the project 🎉
+
 ## [TailwindUI x BlitzJS Recipe](https://github.com/jamiedavenport/blitzjs-tailwindui-recipe)
 
-Keeping with the Blitz theme, I've also created a custom recipe for TailwindUI. This recipe makes it simple to setup TailwindUI within a Blitz app.
+I often use TailwindUI in new projects because it makes the task of building great UX significantly easier (a skill I'm very bad at).
 
-This combination of Blitz and TailwindUI is incredibly powerful as it allows me to focus entirely on the business logic without worrying about UX or wasting time setting up an API.
+This TailwindUI recipe for Blitz allows you to setup TailwindCSS and TailwindUI in a single command:
+
+```bash
+blitz install jamiedavenport/blitzjs-tailwindui-recipe
+```
 
 ## Baking
 
-Like every other techie during lockdown, I've been enjoying a bit of baking. This week I've baked these dinner rolls with a [recipe](https://www.youtube.com/watch?v=M9le93pztbU&t=387s) courtesy of Joshua Weissman.
+Like every other techie during lockdown, I've stayed sane by baking bread. This week I've baked these dinner rolls using [Joshua Weissman's recipe](https://www.youtube.com/watch?v=M9le93pztbU&t=387s).
 
 ![Dinner Rolls](/images/dinner-rolls.png)
 
 ## MAKE Book
 
-Reread [MAKE book](https://makebook.io/) by [Pieter Levels](https://twitter.com/levelsio). This book describes an approach to bootstrap profitable businesses.
+Reread [MAKE book](https://makebook.io/) by [@levelsio](https://twitter.com/levelsio). I'm planning on using the techniques described here to when working through my backlog of ideas.
 
-## Future
+## What's Next
 
 - Continue to contribute to Blitz 🚀
 - Work on improving my written communication skills and write up some more blog posts 📝
-- Start to work through my backlog of top class project ideas 💼
+- Start working on a new project (not sure what that will be) 💼
