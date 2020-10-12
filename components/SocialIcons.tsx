@@ -8,16 +8,25 @@ import TwitterIcon from "./social/TwitterIcon";
 const SocialIcons: React.FC = () => {
   return (
     <div className="flex flex-row space-x-2 md:space-x-4">
-      <ExternalLink href="/feed.xml">
+      <ExternalLink aria-label="RSS Feed" href="/feed.xml">
         <RSSIcon />
       </ExternalLink>
-      <ExternalLink href="https://github.com/jamiedavenport">
+      <ExternalLink
+        aria-label="Github"
+        href="https://github.com/jamiedavenport"
+      >
         <GithubIcon />
       </ExternalLink>
-      <ExternalLink href="https://twitter.com/jdavenport97">
+      <ExternalLink
+        aria-label="Twitter"
+        href="https://twitter.com/jdavenport97"
+      >
         <TwitterIcon />
       </ExternalLink>
-      <ExternalLink href="https://www.linkedin.com/in/jamie-davenport-30168a11a/">
+      <ExternalLink
+        aria-label="LinkedIn"
+        href="https://www.linkedin.com/in/jamie-davenport-30168a11a/"
+      >
         <LinkedInIcon />
       </ExternalLink>
     </div>
