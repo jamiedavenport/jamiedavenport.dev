@@ -3,6 +3,7 @@ import renderToString from "next-mdx-remote/render-to-string";
 import matter from "gray-matter";
 import rehypePrism from "@mapbox/rehype-prism";
 import visit from "unist-util-visit";
+import components from "components/blog/components";
 
 const tokenClassNames = {
   tag: "text-code-red",
@@ -47,6 +48,7 @@ export const getPost = async (slug: string): Promise<Post> => {
   const postBody = await fs.readFile(`posts/${slug}.mdx`);
   const { content, data } = matter(postBody);
   const mdxSource = await renderToString(content, {
+    components,
     mdxOptions: {
       remarkPlugins: [],
       rehypePlugins: [

@@ -6,6 +6,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import hydrate from "next-mdx-remote/hydrate";
 import { prettyPostDate } from "lib/date";
 import Head from "next/head";
+import components from "components/blog/components";
 
 type Props = {
   post: Post;
@@ -30,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const BlogPost: React.FC<Props> = ({ post }) => {
   const { title, description, body, date, image } = post;
-  const content = hydrate(body);
+  const content = hydrate(body, { components });
 
   const dateStr = prettyPostDate(date);
 
