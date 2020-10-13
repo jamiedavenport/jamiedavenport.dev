@@ -19,25 +19,41 @@ image: website-deep-dive.png
 - NextJS
 - Tailwind
 - MDX Remote
+  - Alternative would be a Webpack loader
+  - MDX allows me to use `getStaticProps` which is how data should be loaded in Next
+  - Comes with some limitations
 - Netlify
   - Already using Netlify, great features, domain already hosted there (compared to Vercel)
+- Fathom
+  - Simpler than GA
+  - Privacy, no tracking cookies (TODO: Add links to Fathom's blog posts & feature list)
 
-## Structure
+## Writing Blog Posts
 
-- Post Structure
-- Prefer writing posts in MDX within VSCode than I do in NetlifyCMS
-- Instant feedback (`yarn dev`), git workflows etc.
-- Work on new ideas on branches and get preview deploys for feedback
+- MDX Files stored under `/posts`
+- Frontmatter for metadata (due to the limitations of MDX Remote)
+- Write them in VSCode
+- Run `yarn dev` to see the blog post locally
+- Push to a branch and use Netlify preivew branches to see the production build before publishing
+- Publishing is a PR into `main`
+- Improvement over the NetlifyCMS approach which was slow
+- Custom components such as `Achievement` give the post more substance
 
-## Blog Posts
+```md
+---
+title: ...
+description: ...
+date: ...
+image: ...
+---
 
-- `getStaticProps`
+## Blog Content Goes Here
+```
 
 ## Design
 
 - My preferred approach to styling websites
 - Tailwind Typography for the blog content
-- Issue with embedding MDX components
 - Beth for images
 - Designed it myself
 
