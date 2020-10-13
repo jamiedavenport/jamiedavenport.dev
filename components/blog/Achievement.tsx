@@ -1,8 +1,16 @@
 import React from "react";
 
-const Achievement: React.FC = ({ children }) => {
-  return (
-    <div className="rounded-md bg-yellow-100 p-4">
+type Props = {
+  href?: string;
+};
+
+const Achievement: React.FC<Props> = ({ children, href }) => {
+  let body = (
+    <div
+      className={`rounded-md bg-yellow-100 p-4 ${
+        href && "hover:bg-yellow-200"
+      }`}
+    >
       <div className="flex items-center">
         <div className="flex-shrink-0">🎉</div>
         <div className="ml-3">
@@ -11,6 +19,16 @@ const Achievement: React.FC = ({ children }) => {
       </div>
     </div>
   );
+
+  if (href) {
+    return (
+      <a href={href} className="block no-underline">
+        {body}
+      </a>
+    );
+  }
+
+  return body;
 };
 
 export default Achievement;
