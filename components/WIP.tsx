@@ -1,5 +1,5 @@
-import React from "react";
-import ExternalLink from "./ExternalLink";
+import React from 'react'
+import ExternalLink from './ExternalLink'
 
 const WIP: React.FC = () => {
   return (
@@ -26,17 +26,17 @@ const WIP: React.FC = () => {
           </h3>
           <div className="mt-2 text-sm leading-5 text-yellow-700">
             <p>
-              This site is currently a work in progress.{" "}
+              This site is currently a work in progress.{' '}
               <ExternalLink href="https://blog.jamiedavenport.dev">
                 Click here
-              </ExternalLink>{" "}
+              </ExternalLink>{' '}
               to read my old blog posts.
             </p>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WIP;
+export default WIP

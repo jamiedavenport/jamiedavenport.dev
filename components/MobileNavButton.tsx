@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 type Props = {
-  isOpen: boolean;
-  onClick: () => void;
-};
+  isOpen: boolean
+  onClick: () => void
+}
 
 const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
   let icon = (
@@ -21,7 +21,7 @@ const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
         d="M4 6h16M4 12h16M4 18h16"
       />
     </svg>
-  );
+  )
   if (isOpen) {
     icon = (
       <svg
@@ -38,7 +38,7 @@ const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-    );
+    )
   }
 
   return (
@@ -49,7 +49,7 @@ const MobileNavButton: React.FC<Props> = ({ isOpen, onClick }) => {
     >
       {icon}
     </button>
-  );
-};
+  )
+}
 
-export default MobileNavButton;
+export default MobileNavButton

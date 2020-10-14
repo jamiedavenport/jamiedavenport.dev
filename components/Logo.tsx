@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Logo: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Logo: React.FC = () => {
       </svg>
       <span>Jamie Davenport</span>
     </div>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

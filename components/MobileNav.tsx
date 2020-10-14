@@ -1,12 +1,12 @@
-import React from "react";
-import Nav from "./Nav";
+import React from 'react'
+import Nav from './Nav'
 
 type Props = {
-  isOpen: boolean;
-};
+  isOpen: boolean
+}
 
 const MobileNav: React.FC<Props> = ({ isOpen }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="bg-gray-200 p-4">
@@ -18,7 +18,7 @@ const MobileNav: React.FC<Props> = ({ isOpen }) => {
         )}
       />
     </div>
-  );
-};
+  )
+}
 
-export default MobileNav;
+export default MobileNav

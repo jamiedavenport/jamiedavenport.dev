@@ -1,8 +1,8 @@
-import React, { AriaAttributes } from "react";
+import React, { AriaAttributes } from 'react'
 
 type Props = {
-  href: string;
-};
+  href: string
+}
 
 const ExternalLink: React.FC<Props & AriaAttributes> = ({
   children,
@@ -19,7 +19,7 @@ const ExternalLink: React.FC<Props & AriaAttributes> = ({
     >
       {children}
     </a>
-  );
-};
+  )
+}
 
-export default ExternalLink;
+export default ExternalLink

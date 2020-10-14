@@ -1,10 +1,9 @@
-import React from "react";
-import Divider from "./Divider";
+import React from 'react'
 
 type StatProps = {
-  title: string;
-  value: string;
-};
+  title: string
+  value: string
+}
 
 const Stat: React.FC<StatProps> = ({ title, value }) => {
   return (
@@ -12,8 +11,8 @@ const Stat: React.FC<StatProps> = ({ title, value }) => {
       <div className="text-5xl font-black leading-none">{value}</div>
       <div className="text-gray-600 leading-none">{title}</div>
     </div>
-  );
-};
+  )
+}
 
 const Stats: React.FC = () => {
   return (
@@ -22,7 +21,7 @@ const Stats: React.FC = () => {
       <Stat title="Contributed To" value="3" />
       <Stat title="Total PRs" value="9" />
     </div>
-  );
-};
+  )
+}
 
-export default Stats;
+export default Stats

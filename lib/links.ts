@@ -4,11 +4,11 @@ export enum LinkType {
 }
 
 export interface Link {
-  title: string;
-  type: LinkType;
-  href: string;
+  title: string
+  type: LinkType
+  href: string
 }
 
-const links: Link[] = [];
+const links: Link[] = []
 
-export default links;
+export default links

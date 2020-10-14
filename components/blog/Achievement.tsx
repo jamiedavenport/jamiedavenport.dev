@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 
 type Props = {
-  href?: string;
-};
+  href?: string
+}
 
 const Achievement: React.FC<Props> = ({ children, href }) => {
-  let body = (
+  const body = (
     <div
       className={`rounded-md bg-yellow-100 p-4 ${
-        href && "hover:bg-yellow-200"
+        href && 'hover:bg-yellow-200'
       }`}
     >
       <div className="flex items-center">
@@ -18,17 +18,17 @@ const Achievement: React.FC<Props> = ({ children, href }) => {
         </div>
       </div>
     </div>
-  );
+  )
 
   if (href) {
     return (
       <a href={href} className="block no-underline">
         {body}
       </a>
-    );
+    )
   }
 
-  return body;
-};
+  return body
+}
 
-export default Achievement;
+export default Achievement

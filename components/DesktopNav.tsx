@@ -1,5 +1,5 @@
-import React from "react";
-import Nav from "./Nav";
+import React from 'react'
+import Nav from './Nav'
 
 const DesktopNav: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const DesktopNav: React.FC = () => {
         )}
       />
     </div>
-  );
-};
+  )
+}
 
-export default DesktopNav;
+export default DesktopNav

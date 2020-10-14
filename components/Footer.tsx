@@ -1,5 +1,5 @@
-import React from "react";
-import SocialIcons from "./SocialIcons";
+import React from 'react'
+import SocialIcons from './SocialIcons'
 
 const Footer: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="text-sm">Jamie Davenport &copy; 2020</div>
       <SocialIcons />
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

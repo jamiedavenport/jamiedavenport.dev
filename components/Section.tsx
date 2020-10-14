@@ -1,9 +1,9 @@
-import React from "react";
-import Divider from "./Divider";
+import React from 'react'
+import Divider from './Divider'
 
 type Props = {
-  title: string;
-};
+  title: string
+}
 
 const Section: React.FC<Props> = ({ title, children }) => {
   return (
@@ -14,7 +14,7 @@ const Section: React.FC<Props> = ({ title, children }) => {
       <Divider />
       <div className="mt-10">{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Section;
+export default Section

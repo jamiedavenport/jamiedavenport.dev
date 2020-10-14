@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import DesktopNav from "./DesktopNav";
-import Logo from "./Logo";
-import MobileNav from "./MobileNav";
-import MobileNavButton from "./MobileNavButton";
-import Link from "next/link";
+import React, { useState } from 'react'
+import DesktopNav from './DesktopNav'
+import Logo from './Logo'
+import MobileNav from './MobileNav'
+import MobileNavButton from './MobileNavButton'
+import Link from 'next/link'
 
 const Header: React.FC = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false)
 
   return (
     <div className="space-y-5 md:space-y-0">
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
         <MobileNav isOpen={isNavOpen} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

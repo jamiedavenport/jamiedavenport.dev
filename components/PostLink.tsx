@@ -1,16 +1,16 @@
-import React from "react";
-import { PostMeta } from "lib/posts";
-import Link from "next/link";
-import { prettyPostDate } from "lib/date";
+import React from 'react'
+import { PostMeta } from 'lib/posts'
+import Link from 'next/link'
+import { prettyPostDate } from 'lib/date'
 
 type Props = {
-  post: PostMeta;
-};
+  post: PostMeta
+}
 
 const PostLink: React.FC<Props> = ({ post }) => {
-  const { title, description, slug, date } = post;
+  const { title, description, slug, date } = post
 
-  const dateStr = prettyPostDate(date);
+  const dateStr = prettyPostDate(date)
 
   return (
     <Link href="/blog/[slug]" as={`/blog/${slug}`}>
@@ -27,7 +27,7 @@ const PostLink: React.FC<Props> = ({ post }) => {
         <span className="text-blue-500">Read More →</span>
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default PostLink;
+export default PostLink

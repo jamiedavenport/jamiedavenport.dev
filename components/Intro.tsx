@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
 const FullStop: React.FC = () => (
   <span className="text-teal-400 font-bold">.</span>
-);
+)
 
 const Fact: React.FC = ({ children }) => (
   <div className="leading-none">
     {children}
     <FullStop />
   </div>
-);
+)
 
 const Intro: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const Intro: React.FC = () => {
         Passionate about <b>Open Source</b>
       </Fact>
     </div>
-  );
-};
+  )
+}
 
-export default Intro;
+export default Intro

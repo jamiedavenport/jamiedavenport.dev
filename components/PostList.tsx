@@ -1,10 +1,10 @@
-import React from "react";
-import { PostMeta } from "lib/posts";
-import PostLink from "./PostLink";
+import React from 'react'
+import { PostMeta } from 'lib/posts'
+import PostLink from './PostLink'
 
 type Props = {
-  posts: PostMeta[];
-};
+  posts: PostMeta[]
+}
 
 const PostList: React.FC<Props> = ({ posts }) => {
   return (
@@ -13,7 +13,7 @@ const PostList: React.FC<Props> = ({ posts }) => {
         <PostLink key={post.slug} post={post} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

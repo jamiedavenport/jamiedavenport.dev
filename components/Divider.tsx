@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Divider: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const Divider: React.FC = () => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default Divider;
+export default Divider

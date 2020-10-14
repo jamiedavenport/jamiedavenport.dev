@@ -1,41 +1,41 @@
-import React from "react";
-import Divider from "components/Divider";
-import Layout from "components/Layout";
-import { getPost, getPostPaths, Post } from "lib/posts";
-import { GetStaticPaths, GetStaticProps } from "next";
-import hydrate from "next-mdx-remote/hydrate";
-import { prettyPostDate } from "lib/date";
-import Head from "next/head";
-import components from "components/blog/components";
+import React from 'react'
+import Divider from 'components/Divider'
+import Layout from 'components/Layout'
+import { getPost, getPostPaths, Post } from 'lib/posts'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import hydrate from 'next-mdx-remote/hydrate'
+import { prettyPostDate } from 'lib/date'
+import Head from 'next/head'
+import components from 'components/blog/components'
 
 type Props = {
-  post: Post;
-};
+  post: Post
+}
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = params.slug as string;
-  const post = await getPost(slug);
+  const slug = params.slug as string
+  const post = await getPost(slug)
 
   return {
     props: {
       post,
     },
-  };
-};
+  }
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPostPaths();
+  const paths = await getPostPaths()
 
-  return { paths, fallback: false };
-};
+  return { paths, fallback: false }
+}
 
 const BlogPost: React.FC<Props> = ({ post }) => {
-  const { title, description, body, date, image } = post;
-  const content = hydrate(body, { components });
+  const { title, description, body, date, image } = post
+  const content = hydrate(body, { components })
 
-  const dateStr = prettyPostDate(date);
+  const dateStr = prettyPostDate(date)
 
-  const imageUrl = `https://jamiedavenport.dev/images/${image}`;
+  const imageUrl = `https://jamiedavenport.dev/images/${image}`
 
   return (
     <Layout title={title}>
@@ -68,7 +68,7 @@ const BlogPost: React.FC<Props> = ({ post }) => {
         <div className="prose mx-auto">{content}</div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default BlogPost;
+export default BlogPost

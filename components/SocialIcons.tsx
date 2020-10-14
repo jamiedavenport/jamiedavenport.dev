@@ -1,9 +1,9 @@
-import React from "react";
-import ExternalLink from "./ExternalLink";
-import GithubIcon from "./social/GithubIcon";
-import LinkedInIcon from "./social/LinkedInIcon";
-import RSSIcon from "./social/RSSIcon";
-import TwitterIcon from "./social/TwitterIcon";
+import React from 'react'
+import ExternalLink from './ExternalLink'
+import GithubIcon from './social/GithubIcon'
+import LinkedInIcon from './social/LinkedInIcon'
+import RSSIcon from './social/RSSIcon'
+import TwitterIcon from './social/TwitterIcon'
 
 const SocialIcons: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const SocialIcons: React.FC = () => {
         <LinkedInIcon />
       </ExternalLink>
     </div>
-  );
-};
+  )
+}
 
-export default SocialIcons;
+export default SocialIcons

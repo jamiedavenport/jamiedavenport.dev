@@ -1,30 +1,30 @@
-import React from "react";
-import Intro from "components/Intro";
-import Section from "components/Section";
-import Layout from "components/Layout";
-import PostList from "components/PostList";
-import { GetStaticProps } from "next";
-import { getPosts, PostMeta } from "lib/posts";
-import WIP from "components/WIP";
-import Head from "next/head";
+import React from 'react'
+import Intro from 'components/Intro'
+import Section from 'components/Section'
+import Layout from 'components/Layout'
+import PostList from 'components/PostList'
+import { GetStaticProps } from 'next'
+import { getPosts, PostMeta } from 'lib/posts'
+import WIP from 'components/WIP'
+import Head from 'next/head'
 
 type Props = {
-  posts: PostMeta[];
-};
+  posts: PostMeta[]
+}
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await getPosts();
+  const posts = await getPosts()
 
   return {
     props: {
       posts,
     },
-  };
-};
+  }
+}
 
 const Home: React.FC<Props> = ({ posts }) => {
-  const description = `Software Engineer based in the UK. Working at Infinity Works. Passionate about Open Source`;
-  const imageUrl = "https://jamiedavenport.dev/icon.png";
+  const description = `Software Engineer based in the UK. Working at Infinity Works. Passionate about Open Source`
+  const imageUrl = 'https://jamiedavenport.dev/icon.png'
 
   return (
     <Layout title="Jamie Davenport">
@@ -59,7 +59,7 @@ const Home: React.FC<Props> = ({ posts }) => {
         </Section>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

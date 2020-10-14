@@ -1,10 +1,10 @@
-import Logo from "components/Logo";
-import { useRouter } from "next/dist/client/router";
-import React from "react";
+import Logo from 'components/Logo'
+import { useRouter } from 'next/dist/client/router'
+import React from 'react'
 
 const twitter: React.FC = () => {
-  const router = useRouter();
-  const title = router.query.title;
+  const router = useRouter()
+  const title = router.query.title
 
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-between p-4">
@@ -14,7 +14,7 @@ const twitter: React.FC = () => {
       )}
       <Logo />
     </div>
-  );
-};
+  )
+}
 
-export default twitter;
+export default twitter
