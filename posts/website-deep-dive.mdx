@@ -15,17 +15,11 @@ Credit to the [Tailwind Blog](https://blog.tailwindcss.com/building-the-tailwind
 
 ## Tech Stack
 
-- NextJS
-- Tailwind
-- MDX Remote
-  - Alternative would be a Webpack loader
-  - MDX allows me to use `getStaticProps` which is how data should be loaded in Next
-  - Comes with some limitations
-- Netlify
-  - Already using Netlify, great features, domain already hosted there (compared to Vercel)
-- Fathom
-  - Simpler than GA
-  - Privacy, no tracking cookies (TODO: Add links to Fathom's blog posts & feature list)
+- [NextJS](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/) I've completely migrated away from the CSS in Javascript and gone all in on the [utility-first](https://tailwindcss.com/docs/utility-first) approach
+- [MDX Remote](https://github.com/hashicorp/next-mdx-remote) which allows me to use `getStaticProps` to load blog post content albeit with a few limitations
+- [Netlify](https://www.netlify.com/) I could also have used [Vercel](https://vercel.com/) but my domain was already hosted on Netlify DNS 🤷🏻‍♂️
+- [Fathom](https://usefathom.com/) instead of GA for analytics. It's privacy-first, simple and transparent 💯
 
 ## Writing Blog Posts
 
