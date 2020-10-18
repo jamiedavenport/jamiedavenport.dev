@@ -14,7 +14,7 @@ const PostLink: React.FC<Props> = ({ post }) => {
 
   return (
     <Link href="/blog/[slug]" as={`/blog/${slug}`}>
-      <a className="md:flex md:flex-row md:justify-between">
+      <a className="block md:flex md:flex-row md:justify-between">
         <div>
           <p className="text-gray-700 text-sm mb-2">{dateStr}</p>
           <h3 className="text-2xl font-bold font-mono leading-none mb-3">
