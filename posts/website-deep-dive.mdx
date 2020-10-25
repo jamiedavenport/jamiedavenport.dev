@@ -5,7 +5,7 @@ date: 2020-10-28
 image: website-deep-dive.png
 ---
 
-Recently I've been rebuilding my personal website. Previously it was build on Gatsby & NetlifyCMS but I experienced some issues with that stack:
+Recently I've been rebuilding my personal website. Previously it was build with [Gatsby](https://www.gatsbyjs.com/) & [NetlifyCMS](https://www.netlifycms.org/) but I experienced some issues with that stack:
 
 - I mostly work with NextJS and working on the website required a frustrating context switch
 - The workflow of writing new posts was too slow in NetlifyCMS
@@ -21,16 +21,13 @@ Credit to the [Tailwind Blog](https://blog.tailwindcss.com/building-the-tailwind
 - [Netlify](https://www.netlify.com/) I could also have used [Vercel](https://vercel.com/) but my domain was already hosted on Netlify DNS 🤷🏻‍♂️
 - [Fathom](https://usefathom.com/) instead of GA for analytics. It's privacy-first, simple and transparent 💯
 
-## Writing Blog Posts
+## Blog Posts
 
-- MDX Files stored under `/posts`
-- Frontmatter for metadata (due to the limitations of MDX Remote)
-- Write them in VSCode
-- Run `yarn dev` to see the blog post locally
-- Push to a branch and use Netlify preivew branches to see the production build before publishing
-- Publishing is a PR into `main`
-- Improvement over the NetlifyCMS approach which was slow
-- Custom components such as `Achievement` give the post more substance
+TODO: Talk about `getStaticProps`, `getStaticPaths` and `MDX Remote` for generating pages
+
+One of the key goals of this rebuild was to make it easier to write blog posts, therefore giving me no excuse but to write more 🤷🏻‍♂️. I treat blog posts as any other feature and use the same tools (VSCode, Git, etc).
+
+A post is a single `.mdx` file that's stored under `/posts`. Writing Markdown is very familiar to me vs a rich text editor, and MDX allows me to add custom React components such as `Achievement` that give context or interactivity to posts. Post metadata is stored in the frontmatter.
 
 ```md
 ---
@@ -42,6 +39,18 @@ image: ...
 
 ## Blog Content Goes Here
 ```
+
+The current post workflow looks like:
+
+1. Create a new branch for the post: `gco -b post/awesome-post`
+1. Run `yarn dev` to view the post locally
+1. Write the post in VSCode using a MDX extension
+1. Use Netlify preview branches to get a live preview that I can get proofread
+1. Publish the post by merging the feature branch into `main`
+
+TODO: Update this post workflow image when the post is finished
+
+![Post Workflow](/images/post-workflow.png)
 
 ## Design
 
