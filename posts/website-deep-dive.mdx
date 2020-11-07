@@ -1,22 +1,20 @@
 ---
-title: Website Deep Dive
+title: Building my Personal Website
 description: Why and how I built my new personal website
-date: 2020-10-28
+date: 2020-11-09
 image: website-deep-dive.png
 ---
 
-Recently I've been rebuilding my personal website. Previously it was build with [Gatsby](https://www.gatsbyjs.com/) & [NetlifyCMS](https://www.netlifycms.org/) but I experienced some issues with that stack:
+Recently I've been rebuilding my personal website. Previously it was build with [Gatsby](https://www.gatsbyjs.com/) & [NetlifyCMS](https://www.netlifycms.org/) but I experienced some issues with this stack:
 
 - I mostly work with NextJS and working on the website required a frustrating context switch
-- The workflow of writing new posts was too slow in NetlifyCMS
-- I used a Gatsby blog starter which was difficult to fully customise
-
-Credit to the [Tailwind Blog](https://blog.tailwindcss.com/building-the-tailwind-blog) for technical inspiration.
+- My workflow when writing new posts with NetlifyCMS was too slow
+- The Gatsby blog starter which was difficult to fully customise
 
 ## Tech Stack
 
 - [NextJS](https://nextjs.org/)
-- [TailwindCSS](https://tailwindcss.com/) I've completely migrated away from the CSS in Javascript and gone all in on the [utility-first](https://tailwindcss.com/docs/utility-first) approach
+- [TailwindCSS](https://tailwindcss.com/) I've completely migrated away from CSS in Javascript and gone all in on the [utility-first](https://tailwindcss.com/docs/utility-first) approach
 - [MDX Remote](https://github.com/hashicorp/next-mdx-remote) which allows me to use `getStaticProps` to load blog post content albeit with a few limitations
 - [Netlify](https://www.netlify.com/) I could also have used [Vercel](https://vercel.com/) but my domain was already hosted on Netlify DNS 🤷🏻‍♂️
 - [Fathom](https://usefathom.com/) instead of GA for analytics. It's privacy-first, simple and transparent 💯
@@ -25,7 +23,7 @@ Credit to the [Tailwind Blog](https://blog.tailwindcss.com/building-the-tailwind
 
 TODO: Talk about `getStaticProps`, `getStaticPaths` and `MDX Remote` for generating pages
 
-One of the key goals of this rebuild was to make it easier to write blog posts, therefore giving me no excuse but to write more 🤷🏻‍♂️. I treat blog posts as any other feature and use the same tools (VSCode, Git, etc).
+One of the key goals of this rebuild was to make it easier to write blog posts, therefore giving me no excuse but to write more. I treat blog posts as any other feature and use the same tools (VSCode, Git, etc).
 
 A post is a single `.mdx` file that's stored under `/posts`. Writing Markdown is very familiar to me vs a rich text editor, and MDX allows me to add custom React components such as `Achievement` that give context or interactivity to posts. Post metadata is stored in the frontmatter.
 
