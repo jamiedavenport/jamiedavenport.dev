@@ -1,11 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colours = require('tailwindcss/colors')
 
 module.exports = {
   important: true,
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
   purge: {
     content: [
       './components/**/*.{js,ts,jsx,tsx}',
@@ -37,6 +34,7 @@ module.exports = {
           blue: '#93ddfd',
           white: '#fff',
         },
+        cyan: colours.cyan,
       },
     },
   },

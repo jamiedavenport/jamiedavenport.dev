@@ -1,7 +1,7 @@
 import React from 'react'
 
 const FullStop: React.FC = () => (
-  <span className="text-teal-400 font-bold">.</span>
+  <span className="text-cyan-600 font-bold">.</span>
 )
 
 const Fact: React.FC = ({ children }) => (
