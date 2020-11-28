@@ -5,7 +5,6 @@ import Layout from 'components/Layout'
 import PostList from 'components/PostList'
 import { GetStaticProps } from 'next'
 import { getPosts, PostMeta } from 'lib/posts'
-import WIP from 'components/WIP'
 import Head from 'next/head'
 
 type Props = {
@@ -41,7 +40,7 @@ const Home: React.FC<Props> = ({ posts }) => {
         <meta property="og:image" content={imageUrl} />
         <meta name="description" content={description} />
       </Head>
-      <div className="space-y-20">
+      <div className="space-y-32">
         <Section title="Welcome">
           <div className="space-y-16">
             <Intro />
@@ -50,9 +49,6 @@ const Home: React.FC<Props> = ({ posts }) => {
         </Section>
 
         <Section title="Blog">
-          <div className="mb-10">
-            <WIP />
-          </div>
           <PostList
             posts={posts.sort((a, b) => b.date.getTime() - a.date.getTime())}
           />
