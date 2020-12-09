@@ -6,6 +6,8 @@ import PostList from 'components/PostList'
 import { GetStaticProps } from 'next'
 import { getPosts, PostMeta } from 'lib/posts'
 import Head from 'next/head'
+import ProjectCard from 'components/ProjectCard'
+import { projects } from 'lib/project'
 
 type Props = {
   posts: PostMeta[]
@@ -45,6 +47,16 @@ const Home: React.FC<Props> = ({ posts }) => {
           <div className="space-y-16">
             <Intro />
             {/* <Stats /> */}
+          </div>
+        </Section>
+
+        <Section title="Projects">
+          <div className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-4">
+            {projects.map((project) => (
+              <div className="flex flex-col" key={project.name}>
+                <ProjectCard project={project} />
+              </div>
+            ))}
           </div>
         </Section>
 
