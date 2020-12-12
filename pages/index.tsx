@@ -2,11 +2,11 @@ import React from 'react'
 import Intro from 'components/Intro'
 import Section from 'components/Section'
 import Layout from 'components/Layout'
-import PostList from 'components/PostList'
+import PostList from 'components/blog/PostList'
 import { GetStaticProps } from 'next'
 import { getPosts, PostMeta } from 'lib/posts'
 import Head from 'next/head'
-import ProjectCard from 'components/ProjectCard'
+import ProjectCard from 'components/portfolio/ProjectCard'
 import { projects } from 'lib/project'
 
 type Props = {

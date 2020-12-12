@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colours = require('tailwindcss/colors')
 
 module.exports = {
+  darkMode: 'media',
   important: true,
   purge: {
     content: [
@@ -36,8 +37,43 @@ module.exports = {
         },
         cyan: colours.cyan,
       },
+
+      typography: (theme) => ({
+        dark: {
+          css: {
+            color: theme('colors.gray.100'),
+
+            a: {
+              color: theme('colors.blue.300'),
+              '&:hover': {
+                color: theme('colors.blue.400'),
+              },
+            },
+
+            h1: {
+              color: theme('colors.gray.200'),
+            },
+
+            h2: {
+              color: theme('colors.gray.200'),
+            },
+
+            h3: {
+              color: theme('colors.gray.200'),
+            },
+
+            code: {
+              color: theme('colors.gray.300'),
+            },
+          },
+        },
+      }),
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      typography: ['dark'],
+    },
+  },
   plugins: [require('@tailwindcss/typography')],
 }
