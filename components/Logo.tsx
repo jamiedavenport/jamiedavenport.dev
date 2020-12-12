@@ -4,7 +4,7 @@ const Logo: React.FC = () => {
   return (
     <div className="text-lg font-bold flex flex-row items-center space-x-2">
       <svg
-        className="h-6 w-6 text-gray-900"
+        className="h-6 w-6 text-gray-900 dark:text-gray-200"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 17.42"
         fill="currentColor"

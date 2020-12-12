@@ -54,18 +54,18 @@ const BlogPost: React.FC<Props> = ({ post }) => {
       </Head>
       <div className="space-y-10">
         <div>
-          <h1 className="text-center leading-none text-4xl mb-3 text-gray-900 font-bold font-mono">
+          <h1 className="text-center leading-none text-4xl mb-3 text-gray-900 font-bold font-mono dark:text-gray-100">
             {title}
           </h1>
-          <p className="block text-center leading-none mb-3 text-gray-500">
+          <p className="block text-center leading-none mb-3 text-gray-500 dark:text-gray-500">
             {dateStr}
           </p>
-          <h2 className="text-center leading-none mb-1 text-gray-700">
+          <h2 className="text-center leading-none mb-1 text-gray-700 dark:text-gray-300">
             {description}
           </h2>
           <Divider />
         </div>
-        <div className="prose mx-auto">{content}</div>
+        <div className="prose dark:prose-dark mx-auto">{content}</div>
       </div>
     </Layout>
   )
