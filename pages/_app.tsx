@@ -5,6 +5,7 @@ import * as Fathom from 'fathom-client'
 
 import '../styles/tailwind.css'
 import { useRouter } from 'next/dist/client/router'
+import { ThemeProvider } from 'next-themes'
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -26,7 +27,11 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [])
 
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider attribute="class">
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for

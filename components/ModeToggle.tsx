@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
+import React from 'react'
 
 const ModeToggle: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+
+  const isDarkMode = resolvedTheme === 'dark'
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.querySelector('html').classList.add('dark')
-    } else {
-      document.querySelector('html').classList.remove('dark')
+    if (resolvedTheme === 'light') {
+      setTheme('dark')
     }
-  }, [isDarkMode])
+
+    if (resolvedTheme === 'dark') {
+      setTheme('light')
+    }
+  }
 
   return (
     <div className="flex flex-row items-center space-x-2">
