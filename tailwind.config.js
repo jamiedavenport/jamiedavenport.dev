@@ -73,6 +73,7 @@ module.exports = {
   variants: {
     extend: {
       typography: ['dark'],
+      translate: ['dark'],
     },
   },
   plugins: [require('@tailwindcss/typography')],
