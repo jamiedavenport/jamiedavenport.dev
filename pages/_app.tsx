@@ -6,6 +6,9 @@ import * as Fathom from 'fathom-client'
 import '../styles/tailwind.css'
 import { useRouter } from 'next/dist/client/router'
 import { ThemeProvider } from 'next-themes'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -28,22 +31,12 @@ function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <ThemeProvider defaultTheme="system" attribute="class">
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="system" attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// App.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-
-//   return { ...appProps }
-// }
 
 export default App
