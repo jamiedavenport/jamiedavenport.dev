@@ -10,11 +10,31 @@ image: hyho-volta.png
 <RepoCard />
 
 - Introduction to Volta
+- Javascript tool manager
+- Written in Rust and shipped as a static binary
+- Easy to install with automatic setup for popular shells
 
 ## What's the problem
 
+- It works on my machine e.g. Dev A is using node 12 locally and another is using node 14
+- Different projects have different toolchain requirements e.g. Project A is node 12 and another is node 14
 
 ## The solution
+
+- Ensures that everyone has the same versions of tools
+- Allows you to install binaries from NPM on your machine
+- Allows you to pin versions of a tool for a particular project.
+- This gets stored in `package.json`
+
+```json
+"volta": {
+  "node": "14.15.4",
+  "yarn": "1.22.5"
+}
+```
+
+- Volta automatically switches versions of your tools whenever you change directory
+- If a project requires a certain tool which you do not have installed then it will automatically install it (IMG)
 
 ### Shims
 
@@ -22,14 +42,38 @@ image: hyho-volta.png
 
 ## Example
 
+- Show that I've switched my projects to use Volta
+- It was quick, simple and pain free
+- Also installed it on my work laptop which was previously using different versions of the toolchain
+- Has prevented errors that have occured before
+- Volta in CI?
+
 ## Meet the competition
 
 ### NVM
 
+- No automatic switching for NVM, you must use `nvm use` or setup your shell manually to do this
+- Speed / Performance
+- Installation? Compatability? Worth checking?
 
 ## Who should use this
 
+### Enterprises & Open-Source
+
+- Makes onboarding easy. You need only install Volta to get setup with the toolchain
+- Never hear the words "It works for me" again (No guarantees)
+- Extra context for bug reports, we would already know the toolchain if Volta is used
+
+### Personal Use
+
+- If you have a lot of different project, the seamless switching makes it easy to be using the correct toolchain
+- Makes it easier to install tools across multiple devices (work v personal)
 
 ## Community
 
+- Have a formal request for comments process for large changes https://github.com/volta-cli/rfcs where you can have your voice heard
+- Discord chat
+
 ## Conclusion
+
+- If you enjoyed this Have you heard of post then please share it
