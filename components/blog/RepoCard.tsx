@@ -10,6 +10,7 @@ type Repo = {
   stars: number
   url: string
   description: string
+  language: string
 }
 
 const fetchRepoData = async (): Promise<Repo> => {
@@ -20,7 +21,14 @@ const fetchRepoData = async (): Promise<Repo> => {
 
   // TODO: Assert the resp status
 
-  const { stargazers_count, name, owner, html_url, description } = resp.data
+  const {
+    stargazers_count,
+    name,
+    owner,
+    html_url,
+    description,
+    language,
+  } = resp.data
 
   return {
     name,
@@ -28,6 +36,7 @@ const fetchRepoData = async (): Promise<Repo> => {
     stars: stargazers_count,
     url: html_url,
     description,
+    language,
   }
 }
 
@@ -38,7 +47,7 @@ const RepoCard: React.FC = () => {
 
   if (isError) return <div>Error!!!</div>
 
-  const { name, owner, stars, url, description } = data
+  const { name, owner, stars, url, description, language } = data
 
   return (
     <a
@@ -47,14 +56,17 @@ const RepoCard: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="p-4 bg-white rounded-lg cursor-pointer hover:bg-gray-50 space-y-4 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white">
-        <div className="flex flex-row justify-between">
+      <div className="px-4 py-2 bg-white rounded-lg cursor-pointer hover:bg-gray-50 space-y-4 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row md:space-x-2 md:items-baseline">
             <div className="text-sm text-gray-400">{owner}</div>
             <div className="hidden text-gray-400 md:block">/</div>
             <div className="text-2xl font-bold">{name}</div>
           </div>
-          <div>⭐️ {stars}</div>
+          <div className="flex flex-col md:flex-row-reverse md:space-x-4 md:space-x-reverse">
+            <div>⭐️ {stars}</div>
+            <div>🧑🏻‍💻 {language}</div>
+          </div>
         </div>
         <div>{description}</div>
       </div>
