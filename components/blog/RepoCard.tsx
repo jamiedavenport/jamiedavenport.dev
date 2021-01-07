@@ -47,7 +47,7 @@ const RepoCard: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="p-4 bg-white rounded-lg cursor-pointer hover:bg-gray-50 space-y-4">
+      <div className="p-4 bg-white rounded-lg cursor-pointer hover:bg-gray-50 space-y-4 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white">
         <div className="flex flex-row justify-between">
           <div className="flex flex-col md:flex-row md:space-x-2 md:items-baseline">
             <div className="text-sm text-gray-400">{owner}</div>
