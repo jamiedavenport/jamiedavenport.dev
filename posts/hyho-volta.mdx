@@ -5,28 +5,29 @@ date: 2021-01-10
 image: hyho-volta.png
 ---
 
-Welcome to the first post in my "Have you heard of" series where I find new and niche technologies then try to explain them as simply as possible. I'll try to explain the problems that they solve, compare them to competetors and figure out who, if anyone, should use these tools. 
+Welcome to the first post in my _Have you heard of_ series where I find new and niche technologies then try to explain them as simply as possible. I'll try to explain the problems that they solve, compare them to competetors and figure out who, if anyone, should use these tools. 
 
 This post is all about Volta, enjoy!
 
 <RepoCard />
 
-Volta is a _Javascript tool manager_. What does that mean? Well, it means Volta helps you to manage multiple versions of `node`, `npm` and `yarn` for differnet projects.
+Volta is a _Javascript tool manager_. What does that mean? Well, it means Volta helps you to manage multiple versions of `node`, `npm` and `yarn` for your projects.
 
 It can be installed with a single line and comes with automatic setup and completions for popular shells.
 
 ## What's the problem
 
-It's the age old problem of _"it works on my machine"_. This can occur quite frequently when multiple people are working on a single project such as in a large enterprise or open-source.
+It's the age-old problem of _"it works on my machine"_. This can occur quite frequently when multiple people are working on a single project such as in a large enterprise or open-source.
 
 As a developer you probably have multiple projects that you work on and each might also have different requirements. How do you manage all these different toolchain versions? _It would be funny if the answer wasn't Volta_
 
 ## The solution
 
-- Ensures that everyone has the same versions of tools
-- Allows you to install binaries from NPM on your machine
-- Allows you to pin versions of a tool for a particular project.
-- This gets stored in `package.json`
+Volta provides two important commands that solve this problem: `volta install` and `volta pin`.
+
+First, `volta install` allows us to install a specific version of a tool globally e.g. `volta install node@12`. This becomes the default on your machine which is used as a fallback for projects that don't specify any version.
+
+Secondly, `volta pin` allows us to set a version of a tool for the current project e.g. `volta pin node@14`. This gets stored in the `package.json` and is shared between all developers. 
 
 ```json
 "volta": {
@@ -35,7 +36,7 @@ As a developer you probably have multiple projects that you work on and each mig
 }
 ```
 
-Here's the cool part, Volta automatically switches your toolchain whenever you change directory 🤯.
+Here's the cool part, Volta automatically switches your toolchain whenever you change directory 🤯
 
 <img src="/images/volta/switch-dirs.png" alt="Automatic toolchain switching example" />
 
@@ -45,45 +46,49 @@ If you don't have the specific version installed then Volta will install it for 
 
 ## Example
 
-- Show that I've switched my projects to use Volta
-- It was quick, simple and pain free
-- Also installed it on my work laptop which was previously using different versions of the toolchain
-- Has prevented errors that have occured before
-- Volta in CI?
+Here's a couple of projects that I've used Volta with:
+- [nauth0](https://github.com/jamiedavenport/nauth0/blob/main/package.json)
+- [jamiedavenport.dev](https://github.com/jamiedavenport/jamiedavenport.dev/blob/main/package.json)
+
+
+I've also found that Volta works well in CI ([example](https://github.com/jamiedavenport/nauth0/pull/46)), there's even a [Github Action](https://github.com/volta-cli/action) for it 🥳
 
 ## Meet the competition
 
-### NVM
+### [NVM](https://github.com/nvm-sh/nvm)
 
-- No automatic switching for NVM, you must use `nvm use` or setup your shell manually to do this
-- Speed / Performance
-- Installation? Compatability? Worth checking?
+NVM is a popular tool for managing multiple Node versions on a single machine. I've used NVM for a long time before now and it's served me well.
 
-### Docker
+NVM can detect the node version for a project using a `.nvmrc` file but you have to manually call `nvm use` to switch versions or [manually configure your shell](https://github.com/nvm-sh/nvm#deeper-shell-integration) to do so.
 
-- Also can be used to 
-- Slower and has a higher learning curve
+Volta also feels a lot more responsive, this is my opinion and I'd suggest trying out both.
 
-## Who should use this
+### [Docker](https://www.docker.com/)
 
-### Enterprises & Open-Source
+When you think about solving the _"it works on my machine"_ problem, you probably think of Docker. And you should, Docker is awesome. It solves the problem, works great with CI and containers are a popular deployment target (ECS & Kubernetes).
 
-- Makes onboarding easy. You need only install Volta to get setup with the toolchain
-- Never hear the words "It works for me" again (No guarantees)
-- Extra context for bug reports, we would already know the toolchain if Volta is used
-- Can be configured to fetch binaries from other places such as a private registry
-- Support for workspaces (monorepos)
+However, it does have a much greater learning curve than Volta and the development workflow is a lot slower with time spent waiting for Dockerfiles to build. If you're not already using containers in your workflow, I would use Volta!
 
-### Personal Use
+## For the enterprise
 
-- If you have a lot of different project, the seamless switching makes it easy to be using the correct toolchain
-- Makes it easier to install tools across multiple devices (work v personal)
+Volta makes a great tool for any solo developer but it also fits in with large organisations. In addition to the problems we've already discussed, Volta also makes onboarding a breeze:
+1. Install Volta
+1. Clone projects
+1. Profit 🤩
+
+Volta can be configured to fetch binaries from other places such as your companie's private registry. It even includes support for monorepos! That thing that all the cool companies are using.
 
 ## Community
 
-- Have a formal request for comments process for large changes https://github.com/volta-cli/rfcs where you can have your voice heard
-- Discord chat
+We're all in this together 🎶 and Volta is no exception.
 
-## Conclusion
+- [Discord server](https://discord.gg/hgPTz9A)
+- [Request for comments](https://github.com/volta-cli/rfcs) for substantial changes
 
-- If you enjoyed this Have you heard of post then please share it
+## We've reached the end
+
+I've tried to describe Volta very briefly and from a high level, so much of the specifics have (deliberately) been glossed over. If you want to learn more about Volta, see their top-quality [documentation](https://volta.sh/).
+
+If you've enjoyed this first edition of _Have you heard of_ then please share on Twitter. Feedback is always appreciated.
+
+Have a great day ❤️
