@@ -4,6 +4,11 @@ import { useQuery } from 'react-query'
 
 const octokit = new Octokit()
 
+type Props = {
+  owner: string
+  repo: string
+}
+
 type Repo = {
   name: string
   owner: string
@@ -13,10 +18,10 @@ type Repo = {
   language: string
 }
 
-const fetchRepoData = async (): Promise<Repo> => {
+const fetchRepoData = async (owner: string, repo: string): Promise<Repo> => {
   const resp = await octokit.repos.get({
-    owner: 'volta-cli',
-    repo: 'volta',
+    owner,
+    repo,
   })
 
   // TODO: Assert the resp status
@@ -24,7 +29,7 @@ const fetchRepoData = async (): Promise<Repo> => {
   const {
     stargazers_count,
     name,
-    owner,
+    owner: ownerObj,
     html_url,
     description,
     language,
@@ -32,7 +37,7 @@ const fetchRepoData = async (): Promise<Repo> => {
 
   return {
     name,
-    owner: owner.login,
+    owner: ownerObj.login,
     stars: stargazers_count,
     url: html_url,
     description,
@@ -40,19 +45,22 @@ const fetchRepoData = async (): Promise<Repo> => {
   }
 }
 
-const RepoCard: React.FC = () => {
-  const { isLoading, isError, data } = useQuery('repoKey', fetchRepoData)
+const RepoCard: React.FC<Props> = ({ owner, repo }) => {
+  const { isError, data } = useQuery(['repo', owner, repo], () =>
+    fetchRepoData(owner, repo)
+  )
 
-  if (isLoading) return <div>Loading...</div>
-
-  if (isError) return <div>Error!!!</div>
-
-  const { name, owner, stars, url, description, language } = data
+  if (isError)
+    return (
+      <div className="bg-red-600 rounded-lg text-center text-red-300 px-4 py-2">
+        Something went wrong 😢
+      </div>
+    )
 
   return (
     <a
       className="no-underline"
-      href={url}
+      href={data?.url ?? '#'}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -61,14 +69,14 @@ const RepoCard: React.FC = () => {
           <div className="flex flex-col md:flex-row md:space-x-2 md:items-baseline">
             <div className="text-sm text-gray-400">{owner}</div>
             <div className="hidden text-gray-400 md:block">/</div>
-            <div className="text-2xl font-bold">{name}</div>
+            <div className="text-2xl font-bold">{repo}</div>
           </div>
           <div className="flex flex-col md:flex-row-reverse md:space-x-4 md:space-x-reverse">
-            <div>⭐️ {stars}</div>
-            <div>🧑🏻‍💻 {language}</div>
+            <div>⭐️ {data?.stars ?? '...'}</div>
+            <div>🧑🏻‍💻 {data?.language ?? '...'}</div>
           </div>
         </div>
-        <div>{description}</div>
+        <div>{data?.description ?? 'Loading...'}</div>
       </div>
     </a>
   )
