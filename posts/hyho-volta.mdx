@@ -11,25 +11,30 @@ This post is all about Volta, enjoy!
 
 <RepoCard owner="volta-cli" repo="volta" />
 
-Volta is a _Javascript tool manager_. What does that mean? Well, it means Volta helps you to manage multiple versions of `node`, `npm` and `yarn` for your projects.
+Volta is a _"the hassle-free JavaScript tool manager"_. What does that mean? Well, it helps you to manage multiple versions of `node`, `npm` and `yarn` for your projects and conveniently switch between them (hence _"hastle-free"_).
 
-It can be installed with a single line and comes with automatic setup and completions for popular shells.
+It can be installed with a single line and comes with automatic setup and completions for popular shells. Go ahead, try it now:
+
+```bash
+curl https://get.volta.sh | bash
+```
 
 ## What's the problem
 
-It's the age-old problem of _"it works on my machine"_. This can occur quite frequently when multiple people are working on a single project such as in a large enterprise or open-source.
+It's the age-old problem of _"it works on my machine"_. This occurs frequently when multiple people are working on a single project such as in a large enterprise or open-source.
 
-As a developer you probably have multiple projects that you work on and each might also have different requirements. How do you manage all these different toolchain versions? _It would be funny if the answer wasn't Volta_
+As a developer, you probably have multiple projects that you work on. Each might depend on a different toolchain to the other. How do you manage all these different toolchain versions? _It would be funny if the answer wasn't Volta_.
 
 ## The solution
 
 Volta provides two important commands that solve this problem: `volta install` and `volta pin`.
 
-First, `volta install` allows us to install a specific version of a tool globally e.g. `volta install node@12`. This becomes the default on your machine which is used as a fallback for projects that don't specify any version.
+First, `volta install`, it does what it says on the tin. It installs a specifc version of a tool globally e.g. `volta install node@12`. This becomes the default on your machine which is used as a fallback for any projects that don't specify a version.
 
-Secondly, `volta pin` allows us to set a version of a tool for the current project e.g. `volta pin node@14`. This gets stored in the `package.json` and is shared between all developers. 
+Secondly, `volta pin` allows you to set a version of a tool for the current project e.g. `volta pin node@14`. This gets stored in the `package.json` and is shared between all developers.
 
 ```json
+// package.json
 "volta": {
   "node": "14.15.4",
   "yarn": "1.22.5"
@@ -40,7 +45,7 @@ Here's the cool part, Volta automatically switches your toolchain whenever you c
 
 <img src="/images/volta/switch-dirs.png" alt="Automatic toolchain switching example" />
 
-If you don't have the specific version installed then Volta will install it for you whenever you use it for the first time.
+If you don't have the required version installed then Volta installs it for you. This happens whenever you try to use the tool for the first time.
 
 <img src="/images/volta/automatic-installation.png" alt="Automatic installation example" />
 
@@ -67,7 +72,7 @@ Volta also feels a lot more responsive, this is my opinion and I'd suggest tryin
 
 When you think about solving the _"it works on my machine"_ problem, you probably think of Docker. And you should, Docker is awesome. It solves the problem, works great with CI and containers are a popular deployment target (ECS & Kubernetes).
 
-However, it does have a much greater learning curve than Volta and the development workflow is a lot slower with time spent waiting for Dockerfiles to build. If you're not already using containers in your workflow, I would use Volta!
+However, it does have a much greater learning curve than Volta and the development workflow is a lot slower, with time spent waiting for Dockerfiles to build. If you're not already using containers in your workflow, I would use Volta!
 
 ## For the enterprise
 
@@ -76,7 +81,7 @@ Volta makes a great tool for any solo developer but it also fits in with large o
 1. Clone projects
 1. Profit 🤩
 
-Volta can be configured to fetch binaries from other places such as your companie's private registry. It even includes support for monorepos! That thing that all the cool companies are using.
+Volta can be configured to fetch binaries from other places such as your company's private registry. It even includes support for monorepos! That thing that all the cool companies are using.
 
 ## Community
 
