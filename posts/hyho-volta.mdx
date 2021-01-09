@@ -5,20 +5,21 @@ date: 2021-01-10
 image: hyho-volta.png
 ---
 
-- What is hyho?
+Welcome to the first post in my "Have you heard of" series where I find new and niche technologies then try to explain them as simply as possible. I'll try to explain the problems that they solve, compare them to competetors and figure out who, if anyone, should use these tools. 
+
+This post is all about Volta, enjoy!
 
 <RepoCard />
 
-- Introduction to Volta
-- Javascript tool manager
-- Written in Rust and shipped as a static binary
-- Easy to install with automatic setup for popular shells
-- Complete with simple completions for various shells
+Volta is a _Javascript tool manager_. What does that mean? Well, it means Volta helps you to manage multiple versions of `node`, `npm` and `yarn` for differnet projects.
+
+It can be installed with a single line and comes with automatic setup and completions for popular shells.
 
 ## What's the problem
 
-- It works on my machine e.g. Dev A is using node 12 locally and another is using node 14
-- Different projects have different toolchain requirements e.g. Project A is node 12 and another is node 14
+It's the age old problem of _"it works on my machine"_. This can occur quite frequently when multiple people are working on a single project such as in a large enterprise or open-source.
+
+As a developer you probably have multiple projects that you work on and each might also have different requirements. How do you manage all these different toolchain versions? _It would be funny if the answer wasn't Volta_
 
 ## The solution
 
@@ -34,12 +35,13 @@ image: hyho-volta.png
 }
 ```
 
-- Volta automatically switches versions of your tools whenever you change directory
-- If a project requires a certain tool which you do not have installed then it will automatically install it (IMG)
+Here's the cool part, Volta automatically switches your toolchain whenever you change directory 🤯.
 
-### Shims
+<img src="/images/volta/switch-dirs.png" alt="Automatic toolchain switching example" />
 
-* Could be a subsection here or it could be another article entirely
+If you don't have the specific version installed then Volta will install it for you whenever you use it for the first time.
+
+<img src="/images/volta/automatic-installation.png" alt="Automatic installation example" />
 
 ## Example
 
@@ -57,6 +59,11 @@ image: hyho-volta.png
 - Speed / Performance
 - Installation? Compatability? Worth checking?
 
+### Docker
+
+- Also can be used to 
+- Slower and has a higher learning curve
+
 ## Who should use this
 
 ### Enterprises & Open-Source
@@ -67,7 +74,7 @@ image: hyho-volta.png
 - Can be configured to fetch binaries from other places such as a private registry
 - Support for workspaces (monorepos)
 
-### Personal Use
+### Personal Use
 
 - If you have a lot of different project, the seamless switching makes it easy to be using the correct toolchain
 - Makes it easier to install tools across multiple devices (work v personal)
