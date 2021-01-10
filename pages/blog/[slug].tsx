@@ -8,6 +8,14 @@ import { prettyPostDate } from 'lib/date'
 import Head from 'next/head'
 import components from 'components/blog/components'
 
+const editUrl = (slug) =>
+  `https://github.com/jamiedavenport/jamiedavenport.dev/edit/main/posts/${slug}.mdx`
+
+const discussUrl = (slug) =>
+  `https://mobile.twitter.com/search?q=${encodeURIComponent(
+    `https://jamiedavenport.dev/blog/${slug}`
+  )}`
+
 type Props = {
   post: Post
 }
@@ -30,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const BlogPost: React.FC<Props> = ({ post }) => {
-  const { title, description, body, date, image } = post
+  const { slug, title, description, body, date, image } = post
   const content = hydrate(body, { components })
 
   const dateStr = prettyPostDate(date)
@@ -66,6 +74,15 @@ const BlogPost: React.FC<Props> = ({ post }) => {
           <Divider />
         </div>
         <div className="prose dark:prose-dark mx-auto">{content}</div>
+        <div className="space-x-2 text-gray-600 text-sm">
+          <a href={discussUrl(slug)} target="_blank" rel="noopener noreferrer">
+            Discuss on Twitter
+          </a>
+          <span>•</span>
+          <a href={editUrl(slug)} target="_blank" rel="noopener noreferrer">
+            Edit on Github
+          </a>
+        </div>
       </div>
     </Layout>
   )
