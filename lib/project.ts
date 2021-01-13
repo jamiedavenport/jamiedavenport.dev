@@ -7,6 +7,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'moi',
+    description:
+      'Manage all of your data in one place. Access it all through a single API. Fantasic for personal websites and blogs.',
+    tags: ['Product'],
+    link: 'https://moiapi.dev',
+  },
+  {
     name: 'nauth0',
     description:
       'Easy and awesome authentication for NextJS applications using Auth0',
