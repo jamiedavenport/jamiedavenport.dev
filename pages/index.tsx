@@ -9,6 +9,7 @@ import Head from 'next/head'
 import ProjectCard from 'components/portfolio/ProjectCard'
 import { projects } from 'lib/project'
 import { getProfile } from 'lib/profile'
+import Stats from 'components/Stats'
 
 type Props = {
   posts: PostMeta[]
@@ -52,6 +53,10 @@ const Home: React.FC<Props> = ({ posts, location }) => {
             <Intro location={location} />
             {/* <Stats /> */}
           </div>
+        </Section>
+
+        <Section title="Stats">
+          <Stats posts={posts.length} />
         </Section>
 
         <Section title="Projects">
