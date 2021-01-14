@@ -11,11 +11,16 @@ const Fact: React.FC = ({ children }) => (
   </div>
 )
 
-const Intro: React.FC = () => {
+interface Props {
+  location: string
+}
+
+const Intro: React.FC<Props> = ({ location }) => {
   return (
     <div className="text-4xl space-y-5 md:space-y-10">
       <Fact>
-        <b>Software Engineer</b> based in the <b>UK</b>
+        <b>Software Engineer</b> based in{' '}
+        <b className="whitespace-nowrap">{location}</b>
       </Fact>
       <Fact>
         Currently at <b>Infinity Works</b>
