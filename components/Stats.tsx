@@ -9,7 +9,7 @@ interface Props {
 
 const Stats: React.FC<Props> = ({ posts }) => {
   return (
-    <div className="flex flex-col space-y-20 md:space-y-0 md:flex-row bg-gray-300 rounded-lg px-5 py-16 md:py-10">
+    <div className="flex flex-col space-y-20 md:space-y-0 md:flex-row bg-gray-300 rounded-lg px-5 py-16 md:py-10 dark:bg-gray-800">
       <Stars />
       <Followers />
       <Stat title="Blog Posts" value={posts.toString()} />
