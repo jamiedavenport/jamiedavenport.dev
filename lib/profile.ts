@@ -5,7 +5,7 @@ export interface Profile {
 }
 
 export const getProfile = async (): Promise<Profile> => {
-  const resp = await fetch(`${moiUrl}/users/1`)
+  const resp = await fetch(`${moiUrl}`)
 
   if (!resp.ok) {
     throw new Error('something went wrong')

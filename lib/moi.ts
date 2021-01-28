@@ -1,2 +1,1 @@
-export const moiUrl = 'http://localhost:3001'
-export const moiUserUrl = `${moiUrl}/users/1`
+export const moiUrl = 'https://api.moiapi.dev/v1/users/1'

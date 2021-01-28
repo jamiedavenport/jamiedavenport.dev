@@ -1,4 +1,4 @@
-import { moiUserUrl } from 'lib/moi'
+import { moiUrl } from 'lib/moi'
 import { useQuery } from 'react-query'
 
 interface StarsHook {
@@ -11,7 +11,7 @@ export const useFollowers = (): StarsHook => {
   const { isLoading, isError, data } = useQuery(
     'followers',
     async () => {
-      const res = await fetch(`${moiUserUrl}/socials/twitter`)
+      const res = await fetch(`${moiUrl}/accounts/twitter`)
       if (!res.ok) throw new Error('something went wrong')
       return await res.json()
     },
