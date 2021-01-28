@@ -25,6 +25,7 @@ module.exports = {
         twitter: '#55ACEE',
         linkedin: '#0077B5',
         rss: '#F99000',
+        dev: '#0A0A0A',
       },
       colors: {
         code: {

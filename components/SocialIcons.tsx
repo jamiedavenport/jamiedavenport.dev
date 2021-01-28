@@ -1,5 +1,6 @@
 import React from 'react'
 import ExternalLink from './ExternalLink'
+import DevIcon from './social/DevIcon'
 import GithubIcon from './social/GithubIcon'
 import LinkedInIcon from './social/LinkedInIcon'
 import RSSIcon from './social/RSSIcon'
@@ -28,6 +29,9 @@ const SocialIcons: React.FC = () => {
         href="https://www.linkedin.com/in/jamie-davenport-30168a11a/"
       >
         <LinkedInIcon />
+      </ExternalLink>
+      <ExternalLink aria-label="Dev.to" href="https://dev.to/jamiedavenport">
+        <DevIcon />
       </ExternalLink>
     </div>
   )
