@@ -8,22 +8,27 @@ import { getPosts, PostMeta } from 'lib/posts'
 import Head from 'next/head'
 import ProjectCard from 'components/portfolio/ProjectCard'
 import { projects } from 'lib/project'
+import { getProfile } from 'lib/profile'
+import Stats from 'components/Stats'
 
 type Props = {
   posts: PostMeta[]
+  location: string
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = await getPosts()
+  const { location } = await getProfile()
 
   return {
     props: {
       posts,
+      location,
     },
   }
 }
 
-const Home: React.FC<Props> = ({ posts }) => {
+const Home: React.FC<Props> = ({ posts, location }) => {
   const description = `Software Engineer based in the UK. Working at Infinity Works. Passionate about Open Source`
   const imageUrl = 'https://jamiedavenport.dev/icon.png'
 
@@ -45,9 +50,13 @@ const Home: React.FC<Props> = ({ posts }) => {
       <div className="space-y-32">
         <Section title="Welcome">
           <div className="space-y-16">
-            <Intro />
+            <Intro location={location} />
             {/* <Stats /> */}
           </div>
+        </Section>
+
+        <Section title="Stats">
+          <Stats posts={posts.length} />
         </Section>
 
         <Section title="Projects">
