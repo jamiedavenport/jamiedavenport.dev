@@ -1,4 +1,4 @@
-export type ToolType = 'language' | 'tool' | 'framework'
+export type ToolType = 'language' | 'tool' | 'framework' | 'hosting'
 
 export type Tool = {
   name: string
@@ -50,5 +50,23 @@ export const stack: Stack = [
     type: 'tool',
     description: 'I use Notion for organising my life and projects',
     website: 'https://notion.so',
+  },
+  {
+    name: 'Vercel',
+    type: 'hosting',
+    description: 'Where I deploy most websites',
+    website: 'https://vercel.com/',
+  },
+  {
+    name: 'Netlify',
+    type: 'hosting',
+    description: 'Where I deploy some static websites',
+    website: 'https://www.netlify.com/',
+  },
+  {
+    name: 'Heroku',
+    type: 'hosting',
+    description: 'Where I deploy my servers',
+    website: 'https://www.heroku.com/',
   },
 ]
