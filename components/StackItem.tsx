@@ -1,19 +1,23 @@
 import { Tool } from 'lib/stack'
 import React from 'react'
+import Badge from './stack/Badge'
 
 type Props = {
   tool: Tool
 }
 
 const StackItem: React.FC<Props> = ({ tool }) => {
-  const { name, description, website, affiliateLink } = tool
+  const { name, description, website, affiliateLink, type } = tool
 
   const linkClasses =
     'flex flex-row space-x-2 items-center text-blue-700 dark:text-blue-400'
 
   return (
     <div className={`p-4 rounded-lg space-y-2`}>
-      <h1 className="text-xl font-mono font-bold dark:text-white">{name}</h1>
+      <div className="flex flex-row items-center space-x-2">
+        <h1 className="text-xl font-mono font-bold dark:text-white">{name}</h1>
+        <Badge type={type} />
+      </div>
       <p className="text-sm text-gray-600 dark:text-gray-200">{description}</p>
       {website !== undefined ? (
         <a
