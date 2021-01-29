@@ -14,6 +14,11 @@ const Header: React.FC = () => {
         </Link>
         <ModeToggle />
       </div>
+      <div>
+        <Link href="/stack">
+          <a>Stack</a>
+        </Link>
+      </div>
     </div>
   )
 }
