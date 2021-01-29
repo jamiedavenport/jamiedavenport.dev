@@ -8,7 +8,8 @@ type Props = {
 const StackItem: React.FC<Props> = ({ tool }) => {
   const { name, description, website, affiliateLink } = tool
 
-  const linkClasses = 'flex flex-row space-x-2 items-center text-blue-700'
+  const linkClasses =
+    'flex flex-row space-x-2 items-center text-blue-700 dark:text-blue-400'
 
   return (
     <div className={`p-4 rounded-lg space-y-2`}>
