@@ -5,7 +5,7 @@ import ModeToggle from './ModeToggle'
 
 const Header: React.FC = () => {
   return (
-    <div className="space-y-5 md:space-y-0">
+    <div className="space-y-2">
       <div className="flex flex-row justify-between items-center">
         <Link href="/">
           <a>
@@ -13,6 +13,11 @@ const Header: React.FC = () => {
           </a>
         </Link>
         <ModeToggle />
+      </div>
+      <div>
+        <Link href="/stack">
+          <a className="font-bold hover:text-indigo-400">Stack</a>
+        </Link>
       </div>
     </div>
   )

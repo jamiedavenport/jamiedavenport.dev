@@ -10,6 +10,7 @@ import ProjectCard from 'components/portfolio/ProjectCard'
 import { projects } from 'lib/project'
 import { getProfile } from 'lib/profile'
 import Stats from 'components/Stats'
+import Container from 'components/Container'
 
 type Props = {
   posts: PostMeta[]
@@ -47,34 +48,36 @@ const Home: React.FC<Props> = ({ posts, location }) => {
         <meta property="og:image" content={imageUrl} />
         <meta name="description" content={description} />
       </Head>
-      <div className="space-y-32">
-        <Section title="Welcome">
-          <div className="space-y-16">
-            <Intro location={location} />
-            {/* <Stats /> */}
-          </div>
-        </Section>
+      <Container>
+        <div className="space-y-32">
+          <Section title="Welcome">
+            <div className="space-y-16">
+              <Intro location={location} />
+              {/* <Stats /> */}
+            </div>
+          </Section>
 
-        <Section title="Stats">
-          <Stats posts={posts.length} />
-        </Section>
+          <Section title="Stats">
+            <Stats posts={posts.length} />
+          </Section>
 
-        <Section title="Projects">
-          <div className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-4">
-            {projects.map((project) => (
-              <div className="flex flex-col" key={project.name}>
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
-        </Section>
+          <Section title="Projects">
+            <div className="grid grid-cols-1 auto-rows-max md:grid-cols-2 gap-4">
+              {projects.map((project) => (
+                <div className="flex flex-col" key={project.name}>
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </div>
+          </Section>
 
-        <Section title="Blog">
-          <PostList
-            posts={posts.sort((a, b) => b.date.getTime() - a.date.getTime())}
-          />
-        </Section>
-      </div>
+          <Section title="Blog">
+            <PostList
+              posts={posts.sort((a, b) => b.date.getTime() - a.date.getTime())}
+            />
+          </Section>
+        </div>
+      </Container>
     </Layout>
   )
 }
