@@ -7,6 +7,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { prettyPostDate } from 'lib/date'
 import Head from 'next/head'
 import components from 'components/blog/components'
+import Container from 'components/Container'
 
 const editUrl = (slug) =>
   `https://github.com/jamiedavenport/jamiedavenport.dev/edit/main/posts/${slug}.mdx`
@@ -74,15 +75,21 @@ const BlogPost: React.FC<Props> = ({ post }) => {
           <Divider />
         </div>
         <div className="prose dark:prose-dark mx-auto">{content}</div>
-        <div className="space-x-2 text-gray-600 text-sm">
-          <a href={discussUrl(slug)} target="_blank" rel="noopener noreferrer">
-            Discuss on Twitter
-          </a>
-          <span>•</span>
-          <a href={editUrl(slug)} target="_blank" rel="noopener noreferrer">
-            Edit on Github
-          </a>
-        </div>
+        <Container>
+          <div className="space-x-2 text-gray-600 text-sm">
+            <a
+              href={discussUrl(slug)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discuss on Twitter
+            </a>
+            <span>•</span>
+            <a href={editUrl(slug)} target="_blank" rel="noopener noreferrer">
+              Edit on Github
+            </a>
+          </div>
+        </Container>
       </div>
     </Layout>
   )
