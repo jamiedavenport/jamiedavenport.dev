@@ -1,7 +1,7 @@
 import Layout from 'components/Layout'
 import StackItem from 'components/StackItem'
 import { Stack, stack } from 'lib/stack'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import React from 'react'
 
 type Props = {
@@ -20,7 +20,7 @@ const StackPage: React.FC<Props> = ({ stack }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const shuffledStack = stack.sort(() => 0.5 - Math.random())
 
   return {
