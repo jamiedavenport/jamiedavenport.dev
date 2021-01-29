@@ -11,7 +11,7 @@ type Props = {
 const StackPage: React.FC<Props> = ({ stack }) => {
   return (
     <Layout title="Stack">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-max gap-5 px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-max gap-5 md:px-5">
         {stack.map((tool) => (
           <StackItem key={tool.name} tool={tool} />
         ))}
