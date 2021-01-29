@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       </div>
       <div>
         <Link href="/stack">
-          <a>Stack</a>
+          <a className="font-bold hover:text-indigo-400">Stack</a>
         </Link>
       </div>
     </div>
