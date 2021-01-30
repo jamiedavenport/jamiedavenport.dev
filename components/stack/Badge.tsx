@@ -20,6 +20,9 @@ const Badge: React.FC<Props> = ({ type }) => {
     case 'tool':
       bg = 'bg-yellow-500'
       break
+    case 'graphics':
+      bg = 'bg-purple-500'
+      break
   }
 
   return (

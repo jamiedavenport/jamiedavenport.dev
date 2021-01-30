@@ -1,4 +1,9 @@
-export type ToolType = 'language' | 'tool' | 'framework' | 'hosting'
+export type ToolType =
+  | 'language'
+  | 'tool'
+  | 'framework'
+  | 'hosting'
+  | 'graphics'
 
 export type Tool = {
   name: string
@@ -88,5 +93,17 @@ export const stack: Stack = [
     description: 'Javascript toolchain management',
     website: 'https://volta.sh/',
     article: '/blog/hyho-volta',
+  },
+  {
+    name: 'Heroicons',
+    type: 'graphics',
+    description: 'SVG icons in two sizes',
+    website: 'https://heroicons.com/',
+  },
+  {
+    name: 'Simple Icons',
+    type: 'graphics',
+    description: 'SVG icons for popular brands',
+    website: 'https://simpleicons.org/',
   },
 ]
