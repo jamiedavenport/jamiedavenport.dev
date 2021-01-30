@@ -4,6 +4,7 @@ export type ToolType =
   | 'framework'
   | 'hosting'
   | 'graphics'
+  | 'money'
 
 export type Tool = {
   name: string
@@ -105,5 +106,18 @@ export const stack: Stack = [
     type: 'graphics',
     description: 'SVG icons for popular brands',
     website: 'https://simpleicons.org/',
+  },
+  {
+    name: 'Freetrade',
+    type: 'money',
+    description: 'Investing!',
+    website: 'https://freetrade.io/',
+    affiliateLink: 'https://magic.freetrade.io/join/jamie/ef0b7fe2',
+  },
+  {
+    name: 'Finimize',
+    type: 'money',
+    description: 'Financial advice',
+    website: 'https://www.finimize.com/',
   },
 ]

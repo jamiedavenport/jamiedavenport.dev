@@ -23,11 +23,14 @@ const Badge: React.FC<Props> = ({ type }) => {
     case 'graphics':
       bg = 'bg-purple-500'
       break
+    case 'money':
+      bg = 'bg-pink-500'
+      break
   }
 
   return (
     <span
-      className={`${bg} text-xs font-bold text-white leading-none uppercase p-1`}
+      className={`${bg} bg- text-xs font-bold text-white leading-none uppercase p-1`}
     >
       {type}
     </span>
