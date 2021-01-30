@@ -6,6 +6,7 @@ export type Tool = {
   type: ToolType
   website?: string
   affiliateLink?: string
+  article?: string
 }
 
 export type Stack = Tool[]
@@ -68,5 +69,24 @@ export const stack: Stack = [
     type: 'hosting',
     description: 'Where I deploy my servers',
     website: 'https://www.heroku.com/',
+  },
+  {
+    name: 'Nest',
+    type: 'framework',
+    description: 'My favourite framework for building APIs with Typescript',
+    website: 'https://nestjs.com/',
+  },
+  {
+    name: 'Rush',
+    type: 'tool',
+    description: 'Helpful tool for managing monorepos',
+    website: 'https://rushjs.io/',
+  },
+  {
+    name: 'Volta',
+    type: 'tool',
+    description: 'Javascript toolchain management',
+    website: 'https://volta.sh/',
+    article: '/blog/hyho-volta',
   },
 ]
