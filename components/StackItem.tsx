@@ -7,13 +7,28 @@ type Props = {
 }
 
 const StackItem: React.FC<Props> = ({ tool }) => {
-  const { name, description, website, affiliateLink, type, article } = tool
+  const {
+    name,
+    description,
+    website,
+    affiliateLink,
+    type,
+    article,
+    colour,
+    icon,
+  } = tool
 
   const linkClasses =
     'flex flex-row space-x-2 items-center text-blue-700 dark:text-blue-400'
 
   return (
     <div className={`p-4 rounded-lg space-y-2`}>
+      <div
+        className="rounded h-12 w-12 text-white flex items-center justify-center"
+        style={{ backgroundColor: colour }}
+      >
+        {icon}
+      </div>
       <div className="flex flex-row items-center space-x-2">
         <h1 className="text-xl font-mono font-bold dark:text-white">{name}</h1>
         <Badge type={type} />
