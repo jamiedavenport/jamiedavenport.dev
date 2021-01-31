@@ -1,0 +1,43 @@
+---
+title: Defeating Phantoms and Doppelgangers
+description: Explore the supernatural world of Javascript dependency management
+date: 2021-02-05
+image: phantoms-and-doppelgangers.png
+---
+
+- Introduction
+- In this blog post we're going to discuss two phenomena around the world of Javascript dependency management. I'll discuss why these situations occur, the potential problems that result and how we can curcumvent them.
+- Some funny warning about it not being for the faint-hearted, includes explicit diagrams of Directed Acyclic Graphs
+
+## TL;DR
+
+- A “phantom dependency” occurs when a project uses a package that is not defined in its package.json file
+- A "NPM doopelganger" occurs when the `node_modules` directory structure is forced to contain duplicates of the same package
+- Both of these issues are consequences of how the Node module resolution algorithm works and how package managers layout their `node_module` folder
+
+## Prequel
+
+- Define dependency graphs as a DAG (with example)
+- Discuss how package managers need to represent this DAG on disk (why? include diagrams)
+- Mention that there is not a single unique way of doing this and different package managers use their own heuristics and goals to achieve it
+
+## 👻 Phantoms
+
+- Look at an example of phantom dependencies
+- What can go wrong when you have phantom dependencies
+- How can we avoid it? Is it possible with NPM or Yarn? How does Rush (and PNPM?) solve it?
+
+## 👯 Doppelgangers
+
+- Example
+- What can go wrong
+- How to avoid it? PNPM, not possible with NPM or Yarn
+
+## You made it!
+
+- You've survived this NPM horror movie
+- We've seen how both of these issues can arise and what effects they might have
+- Breifely talked about how newer tooling is helping to eliminate these issues
+- If this was useful to you please share
+- Include extra resources
+- We'll see you in the sequel
