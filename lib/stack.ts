@@ -120,4 +120,10 @@ export const stack: Stack = [
     description: 'Financial advice',
     website: 'https://www.finimize.com/',
   },
+  {
+    name: 'Feedback Fish',
+    type: 'tool',
+    description: 'How I collect feedback from my apps',
+    website: 'https://feedback.fish/',
+  },
 ]
