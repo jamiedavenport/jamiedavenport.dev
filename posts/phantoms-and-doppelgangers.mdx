@@ -1,19 +1,33 @@
 ---
-title: Defeating Phantoms and Doppelgangers
+title: Defeating Phantoms & Doppelgangers
 description: Explore the supernatural world of Javascript dependency management
 date: 2021-02-05
 image: phantoms-and-doppelgangers.png
 ---
-
+<!-- 
 - Introduction
-- In this blog post we're going to discuss two phenomena around the world of Javascript dependency management. I'll discuss why these situations occur, the potential problems that result and how we can curcumvent them.
+- eIn this blog post we're going to discuss two phenomena around the world of Javascript dependency management. I'll discuss why these situations occur, the potential problems that result and how we can curcumvent them.
 - Some funny warning about it not being for the faint-hearted, includes explicit diagrams of Directed Acyclic Graphs
+ -->
+Hello again, welcome to this post about two phenomena in the world of Javascript dependency management: Phantoms and NPM Doppelgangers. In this post, I'm going to define both concepts, talk about the problems that can result and how we can circumvent them.
+
+_Warning: if you suffer from phobias of graphs, filesystems or dependency management then stop reading now._
 
 ## TL;DR
-
+<!-- 
 - A “phantom dependency” occurs when a project uses a package that is not defined in its package.json file
 - A "NPM doopelganger" occurs when the `node_modules` directory structure is forced to contain duplicates of the same package
 - Both of these issues are consequences of how the Node module resolution algorithm works and how package managers layout their `node_module` folder
+ -->
+If for whatever reason you are in a rush, this is a brief overview of the post.
+
+A phantom dependency occurs when a project uses a package which isn't defined within the project's `package.json` file.
+
+When a `node_modules` directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
+
+These are the consequences of two design decisions: How Node `require` algorithm works and how package managers lay out their `node_modules` directory.
+
+If this sounds interesting (and Grammarly told me that it does), then read on for the in-depth explanations.
 
 ## Prequel
 
