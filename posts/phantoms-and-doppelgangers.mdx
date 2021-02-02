@@ -84,13 +84,23 @@ Node has a special resolution rule that lets packages resolve dependencies that 
 
 For `b`, the `node_modules` marked with 😎 is the parent directory. The new rule says that all children of 😎 are resolvable by `b`, this includes `c` and `d`. Hooray, we've removed the duplication! [Don't raise your glass too soon](https://youtu.be/kQpgHOXxQoY?t=596).
 
+Let's look at a real example of a `node_modules` directory, how about the one for this website? The `package.json` is [here](https://github.com/jamiedavenport/jamiedavenport.dev/blob/main/package.json) for reference and the resulting `node_modules` is shown below:
+
+![jamiedavenport.dev node_modules directory](/images/phantoms/node-modules.png)
+
+There's a lot more in there than is defined in the `package.json`, 741 packages to be specific. Yarn has flattened the directory to avoid the duplication we saw previously, these extra dependencies are the dependencies of my dependencies.
+
 One thing to note is that there is not a single unique way of structuring the `node_modules` directory. We've seen 2 valid approaches here, each with its own trade-offs. In practice, the final structure depends on the goals and heuristics used by the package manager.
 
 ## 👻 Phantoms
 
+- Define Phantom dependencies
 - Look at an example of phantom dependencies
 - What can go wrong when you have phantom dependencies
 - How can we avoid it? Is it possible with NPM or Yarn? How does Rush (and PNPM?) solve it?
+
+```json
+```
 
 ## 👯 Doppelgangers
 
