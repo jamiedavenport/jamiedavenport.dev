@@ -52,15 +52,13 @@ Here's a valid layout for the example above:
 .
 └── project/
     ├── node_modules/
-    │   └── a/
+    │   ├── b/
+    │   │   └── node_modules/
+    │   │       └── d 👎
+    │   └── c/
     │       └── node_modules/
-    │           ├── b/
-    │           │   └── node_modules/
-    │           │       └── d 👎
-    │           └── c/
-    │               └── node_modules/
-    │                   ├── d 👎
-    │                   └── e
+    │           ├── d 👎
+    │           └── e
     └── package.json
 ```
 
@@ -72,13 +70,11 @@ Node has a special resolution rule that lets packages resolve dependencies that 
 .
 └── project/
     ├── node_modules/
-    │   └── a/
-    │       └── node_modules/ 😎
-    │           ├── b
-    │           ├── c/
-    │           │   └── node_modules/
-    │           │       └── e
-    │           └── d
+    │   ├── b
+    │   ├── c/
+    │   │   └── node_modules/
+    │   │       └── e
+    │   └── d
     └── package.json
 ```
 
@@ -94,19 +90,61 @@ One thing to note is that there is not a single unique way of structuring the `n
 
 ## 👻 Phantoms
 
-- Define Phantom dependencies
-- Look at an example of phantom dependencies
-- What can go wrong when you have phantom dependencies
-- How can we avoid it? Is it possible with NPM or Yarn? How does Rush (and PNPM?) solve it?
+> A phantom dependency occurs when a project uses a package which isn't defined within the project's `package.json` file.
+
+Think back to our first example, it might have a `package.json` like so:
 
 ```json
+{
+  "name": "project",
+  dependencies: {
+    "b": "^1.0.0",
+    "c": "^2.0.0"
+  }
+}
 ```
+
+Imagine the directory structure (after installing dependencies) looks like this:
+
+```
+.
+└── project/
+    ├── node_modules/
+    │   ├── b
+    │   ├── c
+    │   ├── e
+    │   └── d
+    ├── package.json
+    └── bad-script.js
+```
+
+Finally, `bad-script.js` has the following contents:
+
+```js
+const d = require('d');
+const e = require('e');
+
+// Some code that uses these dependencies
+```
+
+Voila, `d` and `e` are both phantom dependencies. They do not exist in the `package.json` but the code is able to use them just fine!
+
+I hope that this is setting off alarm bells in your head. Our code is able to use something that's directly out of our control.
+
+Package `c` can drop it's dependency on `e` or even perform a major update of `e` and publish the new release as a patch. If you upgrade your dependencies, while respecting the version ranges in the `package.json`, then you could be in for a shock to find your code no longer works.
+
+Furthermore, you can have phantom dependencies with `devDependencies` which exist on your machine during development but not in production. In the worst scenario, you won't hear about this until your package consumers or end users complain.
 
 ## 👯 Doppelgangers
 
 - Example
 - What can go wrong
 - How to avoid it? PNPM, not possible with NPM or Yarn
+
+## PNPM, the hero we need but don't deserve
+
+- Discuss PNPM's strategy to `node_modules`
+- Make sure to link to the relevant articles
 
 ## You made it!
 
