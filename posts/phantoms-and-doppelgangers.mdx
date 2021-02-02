@@ -31,9 +31,60 @@ If this sounds interesting (and Grammarly told me that it does), then read on fo
 
 ## Prequel
 
-- Define dependency graphs as a DAG (with example)
-- Discuss how package managers need to represent this DAG on disk (why? include diagrams)
-- Mention that there is not a single unique way of doing this and different package managers use their own heuristics and goals to achieve it
+<!-- - Define graphs, directed graphs and DAGs -->
+We first need to understand some basics around graph data structures and filesystems.
+
+Graph definitions:
+- A graph is a collection of nodes and edges
+- A directed graph is a graph where the edges have a direction
+- A directed acyclic graph (DAG) is a directed graph with no cycles
+
+![Graph examples](/images/phantoms/graphs.png)
+
+Packages can depend on other packages. In Javascript, we do this with `dependencies` and `devDependencies` in the project's `package.json`. This creates a dependency graph, where nodes are packages and edges are the "depends-on" relationship.
+
+![Example dependency graph](/images/phantoms/dependency-graph.png)
+
+Package managers need to fetch dependencies and store them on disk. It is responsible for the layout of the `node_modules` directory, it must be structured [so that Node can resolve imports](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) from within the code.
+
+Here's a valid layout for the example above:
+```
+.
+└── project/
+    ├── node_modules/
+    │   └── a/
+    │       └── node_modules/
+    │           ├── b/
+    │           │   └── node_modules/
+    │           │       └── d 👎
+    │           └── c/
+    │               └── node_modules/
+    │                   ├── d 👎
+    │                   └── e
+    └── package.json
+```
+
+The problem with this structure is that `d` is duplicated. This is a simplified example, and in a real project, the problem would be much more exaggerated.
+
+Node has a special resolution rule that lets packages resolve dependencies that are direct children of the package's parent directory. Let's explore this with another example layout:
+
+```
+.
+└── project/
+    ├── node_modules/
+    │   └── a/
+    │       └── node_modules/ 😎
+    │           ├── b
+    │           ├── c/
+    │           │   └── node_modules/
+    │           │       └── e
+    │           └── d
+    └── package.json
+```
+
+For `b`, the `node_modules` marked with 😎 is the parent directory. The new rule says that all children of 😎 are resolvable by `b`, this includes `c` and `d`. Hooray, we've removed the duplication! [Don't raise your glass too soon](https://youtu.be/kQpgHOXxQoY?t=596).
+
+One thing to note is that there is not a single unique way of structuring the `node_modules` directory. We've seen 2 valid approaches here, each with its own trade-offs. In practice, the final structure depends on the goals and heuristics used by the package manager.
 
 ## 👻 Phantoms
 
