@@ -143,8 +143,11 @@ Furthermore, you can have phantom dependencies with `devDependencies` which exis
 
 ## PNPM, the hero we need but don't deserve
 
-- Discuss PNPM's strategy to `node_modules`
-- Make sure to link to the relevant articles
+- PNPM downloads all dependencies to a central cache
+- Then it recreates your project `node_modules` by creating symlinks to the actual dependencies.
+- It creates a `node_modules` directory containing only your `package.json` dependencies
+- These are symlinks to a central cache, which is structured in a way that allows dependencies between them.
+- PNPM also has other benefits such as increased performance, I'd recommend [this article](https://www.kochan.io/nodejs/why-should-we-use-pnpm.html) to learn more about it's benefits and internals.
 
 ## You made it!
 
