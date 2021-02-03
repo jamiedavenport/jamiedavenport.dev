@@ -137,12 +137,40 @@ Furthermore, you can have phantom dependencies with `devDependencies` which exis
 
 ## 👯 Doppelgangers
 
-- Example
-- What can go wrong
-- How to avoid it? PNPM, not possible with NPM or Yarn
+> When a `node_modules` directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
+
+We've seen already how NPM and Yarn use a flat `node_modules` directory to avoid duplication but NPM doppelgangers can still occur. Let's look at an example to see how. Imagine the following dependency graph:
+
+![Doppelganger dependency graph](/images/phantoms/doppelgangers.png)
+
+Notice how `a`, `b`, `c` and `d` all depend on `x` but they use two different major versions of the package. `v1` and `v2` of `x` are not compatible and so behave like different packages that happen to share the same name.
+
+If you look at any `node_modules` you might notice a lack of versions in the directory names. We cannot hoist two different versions of the same package. The result is a directory structure like the following:
+
+```
+.
+└── project/
+    └── node_modules/
+        ├── a
+        ├── b
+        ├── c/
+        │   └── node_modules/
+        │       └── x 👯
+        ├── d/
+        │   └── node_modules/
+        │       └── x 👯
+        └── x # v1
+```
+
+`v1` has been hoisted to the top and is shared between `a` and `b`. However, we can't do the same with `v2`, so `c` and `d` both maintain their own copies of the package. These are the NPM doppelgangers.
+
+Unsurprisingly the duplication results in slower installs and potentially larger bundles shipped to the user. Another issue is non-single singletons, where the package exposes a singleton instance but because of the duplication you actually have multiple instances created. In the example above, you would have 3 instances where you would only expect 1 (hence singleton). These are just some of the problems you might experience.
+
+This problem is unavoidable with traditional _flattening-package-managers_. Instead, we need a different approach to constructing `node_modules`. 
 
 ## PNPM, the hero we need but don't deserve
 
+- The issues with Phantoms and Doppelgangers can be very difficult to debug. Prevention is better than the cure in this case.
 - PNPM downloads all dependencies to a central cache
 - Then it recreates your project `node_modules` by creating symlinks to the actual dependencies.
 - It creates a `node_modules` directory containing only your `package.json` dependencies
