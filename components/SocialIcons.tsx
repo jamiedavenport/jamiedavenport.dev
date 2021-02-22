@@ -2,7 +2,6 @@ import React from 'react'
 import ExternalLink from './ExternalLink'
 import DevIcon from './social/DevIcon'
 import GithubIcon from './social/GithubIcon'
-import LinkedInIcon from './social/LinkedInIcon'
 import RSSIcon from './social/RSSIcon'
 import TwitterIcon from './social/TwitterIcon'
 
@@ -23,12 +22,6 @@ const SocialIcons: React.FC = () => {
         href="https://twitter.com/jdavenport97"
       >
         <TwitterIcon />
-      </ExternalLink>
-      <ExternalLink
-        aria-label="LinkedIn"
-        href="https://www.linkedin.com/in/jamie-davenport-30168a11a/"
-      >
-        <LinkedInIcon />
       </ExternalLink>
       <ExternalLink aria-label="Dev.to" href="https://dev.to/jamiedavenport">
         <DevIcon />
