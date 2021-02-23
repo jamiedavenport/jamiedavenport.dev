@@ -4,50 +4,41 @@ description: Explore the supernatural world of Javascript dependency management
 date: 2021-02-05
 image: phantoms-and-doppelgangers.png
 ---
-<!-- 
-- Introduction
-- eIn this blog post we're going to discuss two phenomena around the world of Javascript dependency management. I'll discuss why these situations occur, the potential problems that result and how we can curcumvent them.
-- Some funny warning about it not being for the faint-hearted, includes explicit diagrams of Directed Acyclic Graphs
- -->
+
 Hello again, welcome to this post about two phenomena in the world of Javascript dependency management: Phantoms and NPM Doppelgangers. In this post, I'm going to define both concepts, talk about the problems that can result and how we can circumvent them.
 
 _Warning: if you suffer from phobias of graphs, filesystems or dependency management then stop reading now._
 
 ## TL;DR
-<!-- 
-- A “phantom dependency” occurs when a project uses a package that is not defined in its package.json file
-- A "NPM doopelganger" occurs when the `node_modules` directory structure is forced to contain duplicates of the same package
-- Both of these issues are consequences of how the Node module resolution algorithm works and how package managers layout their `node_module` folder
- -->
-If for whatever reason you are in a rush, this is a brief overview of the post.
 
-A phantom dependency occurs when a project uses a package which isn't defined within the project's `package.json` file.
+A _phantom dependency_ occurs when a project uses a package that isn't defined within the project's `package.json` file.
 
-When a `node_modules` directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
+When a `node_modules` directory contains multiple copies of the same package, these packages are called _NPM doppelgangers_.
 
-These are the consequences of two design decisions: How Node `require` algorithm works and how package managers lay out their `node_modules` directory.
+These are the consequences of two design decisions: How Node's `require` algorithm works and how package managers lay out their `node_modules` directory.
 
 If this sounds interesting (and Grammarly told me that it does), then read on for the in-depth explanations.
 
-## Prequel
+## Graphs & dependencies primer
 
-<!-- - Define graphs, directed graphs and DAGs -->
-We first need to understand some basics around graph data structures and filesystems.
+Let's recap some useful graph definitions.
 
 Graph definitions:
-- A graph is a collection of nodes and edges
-- A directed graph is a graph where the edges have a direction
-- A directed acyclic graph (DAG) is a directed graph with no cycles
+
+- A _graph_ is a collection of nodes and edges
+- A _directed graph_ is a graph where the edges have a direction
+- A _directed acyclic graph (DAG)_ is a directed graph with no cycles
 
 ![Graph examples](/images/phantoms/graphs.png)
 
-Packages can depend on other packages. In Javascript, we do this with `dependencies` and `devDependencies` in the project's `package.json`. This creates a dependency graph, where nodes are packages and edges are the "depends-on" relationship.
+Most projects will depend on a number of other packages. Your UI project might depend on React, which we can express using the `dependencies` object in our `package.json` file (or the corresponding equivalent in other langauges).
 
 ![Example dependency graph](/images/phantoms/dependency-graph.png)
 
 Package managers need to fetch dependencies and store them on disk. It is responsible for the layout of the `node_modules` directory, it must be structured [so that Node can resolve imports](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) from within the code.
 
 Here's a valid layout for the example above:
+
 ```
 .
 └── project/
@@ -97,7 +88,7 @@ Think back to our first example, it might have a `package.json` like so:
 ```json
 {
   "name": "project",
-  dependencies: {
+  "dependencies": {
     "b": "^1.0.0",
     "c": "^2.0.0"
   }
@@ -121,8 +112,8 @@ Imagine the directory structure (after installing dependencies) looks like this:
 Finally, `bad-script.js` has the following contents:
 
 ```js
-const d = require('d');
-const e = require('e');
+const d = require('d')
+const e = require('e')
 
 // Some code that uses these dependencies
 ```
@@ -166,7 +157,7 @@ If you look at any `node_modules` you might notice a lack of versions in the dir
 
 Unsurprisingly the duplication results in slower installs and potentially larger bundles shipped to the user. Another issue is non-single singletons, where the package exposes a singleton instance but because of the duplication you actually have multiple instances created. In the example above, you would have 3 instances where you would only expect 1 (hence singleton). These are just some of the problems you might experience.
 
-This problem is unavoidable with traditional _flattening-package-managers_. Instead, we need a different approach to constructing `node_modules`. 
+This problem is unavoidable with traditional _flattening-package-managers_. Instead, we need a different approach to constructing `node_modules`.
 
 ## PNPM, the hero we need but don't deserve
 
