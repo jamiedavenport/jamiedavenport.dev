@@ -11,25 +11,42 @@ _Warning: if you suffer from phobias of graphs, filesystems or dependency manage
 
 ## TL;DR
 
-- A phantom dependency occurs when a project uses a package that isn't defined within the project's package.json file.
-- When a node_modules directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
-- These are the consequences of two design decisions: How Node's require algorithm works and how package managers lay out their node_modules directory.
+A _phantom dependency_ occurs when a project uses a package that isn't defined within the project's `package.json` file.
 
-## Graph & dependencies introduction
+When a `node_modules` directory contains multiple copies of the same package, these packages are called _NPM doppelgangers_.
 
-### Graphs
+These are consequences of design decisions made by Node and its package managers and so they don't necessarily apply to other languages.
+
+## Graphs 101
+
+Let's remind ourselves of some basic graph definitions.
 
 - A _graph_ is a collection of nodes and edges
 - A _directed graph_ is a graph where the edges have a direction
 - A _directed acyclic graph (DAG)_ is a directed graph with no cycles
 
-### Depends-on in Javascript
-
-- We use the `pacakge.json` and `dependencies` to state that one package depends-on another
-- Your project depends on some other packages, which in turn depend on others
-- This produces a dependency-graph, which is a DAG.
-
 ![Graph examples](/images/phantoms/graphs.png)
+
+Most of the time your Javascript project will depend on some other libraries and frameworks. The "depends-on" relationship is expressed in our `package.json` file under the `dependencies` key.
+
+```json
+// package.json
+{
+  ...
+  "dependencies": {
+    "next": "^10.0.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "tailwindcss": "^2.0.1",
+    ...
+  },
+  ...
+}
+```
+
+Building a UI? Then you might have React and Next.js, those both also depend on a number of libraries. This produces a dependency graph, which itself is a DAG.
+
+[Example]
 
 ## Node & package managers introduction
 
