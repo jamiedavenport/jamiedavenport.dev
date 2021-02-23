@@ -1,166 +1,74 @@
 ---
 title: Defeating Phantoms & Doppelgangers
 description: Explore the supernatural world of Javascript dependency management
-date: 2021-02-05
+date: 2021-02-27
 image: phantoms-and-doppelgangers.png
 ---
 
-Hello again, welcome to this post about two phenomena in the world of Javascript dependency management: Phantoms and NPM Doppelgangers. In this post, I'm going to define both concepts, talk about the problems that can result and how we can circumvent them.
+Hello again 👋 Welcome to this post about two phenomena in the world of Javascript dependency management: Phantoms and NPM Doppelgangers. In this post, I'm going to define both concepts, talk about the problems that can result and how we can circumvent them.
 
 _Warning: if you suffer from phobias of graphs, filesystems or dependency management then stop reading now._
 
 ## TL;DR
 
-A _phantom dependency_ occurs when a project uses a package that isn't defined within the project's `package.json` file.
+- A phantom dependency occurs when a project uses a package that isn't defined within the project's package.json file.
+- When a node_modules directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
+- These are the consequences of two design decisions: How Node's require algorithm works and how package managers lay out their node_modules directory.
 
-When a `node_modules` directory contains multiple copies of the same package, these packages are called _NPM doppelgangers_.
+## Graph & dependencies introduction
 
-These are the consequences of two design decisions: How Node's `require` algorithm works and how package managers lay out their `node_modules` directory.
-
-If this sounds interesting (and Grammarly told me that it does), then read on for the in-depth explanations.
-
-## Graphs & dependencies primer
-
-Let's recap some useful graph definitions.
-
-Graph definitions:
+### Graphs
 
 - A _graph_ is a collection of nodes and edges
 - A _directed graph_ is a graph where the edges have a direction
 - A _directed acyclic graph (DAG)_ is a directed graph with no cycles
 
+### Depends-on in Javascript
+
+- We use the `pacakge.json` and `dependencies` to state that one package depends-on another
+- Your project depends on some other packages, which in turn depend on others
+- This produces a dependency-graph, which is a DAG.
+
 ![Graph examples](/images/phantoms/graphs.png)
 
-Most projects will depend on a number of other packages. Your UI project might depend on React, which we can express using the `dependencies` object in our `package.json` file (or the corresponding equivalent in other langauges).
+## Node & package managers introduction
 
-![Example dependency graph](/images/phantoms/dependency-graph.png)
+- Node made the design decision to represent the dependency graph on disk.
+- Most package management solutions in other langauges don't do this and so they don't suffer the same problems.
+- Your Node code can include another library using `require`. (Example)
+- When executing code like this, Node looks in a number of places on the disk to locate the code based on its algorithm.
+- One of these is the `node_modules` directory.
 
-Package managers need to fetch dependencies and store them on disk. It is responsible for the layout of the `node_modules` directory, it must be structured [so that Node can resolve imports](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) from within the code.
+- Package managers such as NPM and Yarn have the job of fetching all the libraries needed for your project to run.
+- It pulls them from the internet and stores them in a `node_modules` directory.
+- It must be laid out in such a way that the Node `require` algorithm can find them.
+- There is not necessarily a unique way of structuring any DAG (our depepndency graph) on disk.
+- Package managers might structure the `node_modules` directory according to some of its own goals such as "Minimise duplication"
 
-Here's a valid layout for the example above:
+## Phantoms
 
-```
-.
-└── project/
-    ├── node_modules/
-    │   ├── b/
-    │   │   └── node_modules/
-    │   │       └── d 👎
-    │   └── c/
-    │       └── node_modules/
-    │           ├── d 👎
-    │           └── e
-    └── package.json
-```
+> A phantom dependency occurs when a project uses a package that isn't defined within the project's package.json file.
 
-The problem with this structure is that `d` is duplicated. This is a simplified example, and in a real project, the problem would be much more exaggerated.
+- How? Example dependency structure that results in the problem.
+- Look at a diamond dependency pattern.
+- Can't represent this on disk. It's a tree structure. No way for subdirectories to join together.
+- We would have to duplicate the dependency to get a structure like so (example).
+- Node added a special rule, this lets packages resolve dependencies which are siblings.
+- Now we can have the following structure and all the code will continue to work.
+- However now that dependency becomes available for our project. The following code will work even though we haven't got the dep as an explicit `dependency`.
 
-Node has a special resolution rule that lets packages resolve dependencies that are direct children of the package's parent directory. Let's explore this with another example layout:
+## Doppelgangers
 
-```
-.
-└── project/
-    ├── node_modules/
-    │   ├── b
-    │   ├── c/
-    │   │   └── node_modules/
-    │   │       └── e
-    │   └── d
-    └── package.json
-```
+> When a node_modules directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
 
-For `b`, the `node_modules` marked with 😎 is the parent directory. The new rule says that all children of 😎 are resolvable by `b`, this includes `c` and `d`. Hooray, we've removed the duplication! [Don't raise your glass too soon](https://youtu.be/kQpgHOXxQoY?t=596).
+- How? Example dependency structure that results in the problem.
+- Different versions of the same library.
+- These are not sharable but the directory names would conflict.
+- Only hoist one of them, resulting in the other being duplicated.
 
-Let's look at a real example of a `node_modules` directory, how about the one for this website? The `package.json` is [here](https://github.com/jamiedavenport/jamiedavenport.dev/blob/main/package.json) for reference and the resulting `node_modules` is shown below:
+## PNPM
 
-![jamiedavenport.dev node_modules directory](/images/phantoms/node-modules.png)
-
-There's a lot more in there than is defined in the `package.json`, 741 packages to be specific. Yarn has flattened the directory to avoid the duplication we saw previously, these extra dependencies are the dependencies of my dependencies.
-
-One thing to note is that there is not a single unique way of structuring the `node_modules` directory. We've seen 2 valid approaches here, each with its own trade-offs. In practice, the final structure depends on the goals and heuristics used by the package manager.
-
-## 👻 Phantoms
-
-> A phantom dependency occurs when a project uses a package which isn't defined within the project's `package.json` file.
-
-Think back to our first example, it might have a `package.json` like so:
-
-```json
-{
-  "name": "project",
-  "dependencies": {
-    "b": "^1.0.0",
-    "c": "^2.0.0"
-  }
-}
-```
-
-Imagine the directory structure (after installing dependencies) looks like this:
-
-```
-.
-└── project/
-    ├── node_modules/
-    │   ├── b
-    │   ├── c
-    │   ├── e
-    │   └── d
-    ├── package.json
-    └── bad-script.js
-```
-
-Finally, `bad-script.js` has the following contents:
-
-```js
-const d = require('d')
-const e = require('e')
-
-// Some code that uses these dependencies
-```
-
-Voila, `d` and `e` are both phantom dependencies. They do not exist in the `package.json` but the code is able to use them just fine!
-
-I hope that this is setting off alarm bells in your head. Our code is able to use something that's directly out of our control.
-
-Package `c` can drop it's dependency on `e` or even perform a major update of `e` and publish the new release as a patch. If you upgrade your dependencies, while respecting the version ranges in the `package.json`, then you could be in for a shock to find your code no longer works.
-
-Furthermore, you can have phantom dependencies with `devDependencies` which exist on your machine during development but not in production. In the worst scenario, you won't hear about this until your package consumers or end users complain.
-
-## 👯 Doppelgangers
-
-> When a `node_modules` directory contains multiple copies of the same package, these packages are called NPM doppelgangers.
-
-We've seen already how NPM and Yarn use a flat `node_modules` directory to avoid duplication but NPM doppelgangers can still occur. Let's look at an example to see how. Imagine the following dependency graph:
-
-![Doppelganger dependency graph](/images/phantoms/doppelgangers.png)
-
-Notice how `a`, `b`, `c` and `d` all depend on `x` but they use two different major versions of the package. `v1` and `v2` of `x` are not compatible and so behave like different packages that happen to share the same name.
-
-If you look at any `node_modules` you might notice a lack of versions in the directory names. We cannot hoist two different versions of the same package. The result is a directory structure like the following:
-
-```
-.
-└── project/
-    └── node_modules/
-        ├── a
-        ├── b
-        ├── c/
-        │   └── node_modules/
-        │       └── x 👯
-        ├── d/
-        │   └── node_modules/
-        │       └── x 👯
-        └── x # v1
-```
-
-`v1` has been hoisted to the top and is shared between `a` and `b`. However, we can't do the same with `v2`, so `c` and `d` both maintain their own copies of the package. These are the NPM doppelgangers.
-
-Unsurprisingly the duplication results in slower installs and potentially larger bundles shipped to the user. Another issue is non-single singletons, where the package exposes a singleton instance but because of the duplication you actually have multiple instances created. In the example above, you would have 3 instances where you would only expect 1 (hence singleton). These are just some of the problems you might experience.
-
-This problem is unavoidable with traditional _flattening-package-managers_. Instead, we need a different approach to constructing `node_modules`.
-
-## PNPM, the hero we need but don't deserve
-
+- The choice and design decisions of the package manager are to blame. Choose a different one.
 - The issues with Phantoms and Doppelgangers can be very difficult to debug. Prevention is better than the cure in this case.
 - PNPM downloads all dependencies to a central cache
 - Then it recreates your project `node_modules` by creating symlinks to the actual dependencies.
@@ -168,11 +76,4 @@ This problem is unavoidable with traditional _flattening-package-managers_. Inst
 - These are symlinks to a central cache, which is structured in a way that allows dependencies between them.
 - PNPM also has other benefits such as increased performance, I'd recommend [this article](https://www.kochan.io/nodejs/why-should-we-use-pnpm.html) to learn more about it's benefits and internals.
 
-## You made it!
-
-- You've survived this NPM horror movie
-- We've seen how both of these issues can arise and what effects they might have
-- Breifely talked about how newer tooling is helping to eliminate these issues
-- If this was useful to you please share
-- Include extra resources
-- We'll see you in the sequel
+## Conclusion
