@@ -44,29 +44,44 @@ Most of the time your Javascript project will depend on some other libraries and
 }
 ```
 
-Building a UI? Then you might have React and Next.js, those both also depend on a number of libraries. This produces a dependency graph, which itself is a DAG.
+Building a UI? Then you might have React and Next.js, those both also depend on a number of libraries. This produces a dependency graph, which is a DAG.
 
 ![Dependency graph](/images/phantoms/dependency-graph.png)
 
-## Node & package managers introduction
+## Node vs Package Managers
 
-- Node made the design decision to represent the dependency graph on disk.
-- Most package management solutions in other langauges don't do this and so they don't suffer the same problems.
-- Your Node code can include another library using `require`. (Example)
-- When executing code like this, Node looks in a number of places on the disk to locate the code based on its algorithm.
-- One of these is the `node_modules` directory.
+Node made a design decision to represent the dependency graph on disk. When loading in external libraries, Node looks in a number of directories according to its resolution algorithm. For example:
 
-- Package managers such as NPM and Yarn have the job of fetching all the libraries needed for your project to run.
-- It pulls them from the internet and stores them in a `node_modules` directory.
-- It must be laid out in such a way that the Node `require` algorithm can find them.
-- There is not necessarily a unique way of structuring any DAG (our depepndency graph) on disk.
-- Package managers might structure the `node_modules` directory according to some of its own goals such as "Minimise duplication"
+```javascript
+// ~/projects/project/index.js
+
+const a = require('a')
+
+...
+```
+
+Node would search for `a` in the following locations (in order):
+
+- `~/projects/project/node_modules/a`
+- `~/projects/node_modules/a`
+- `~/node_modules/a`
+
+You can read the algorithm [pseudocode](https://nodejs.org/api/modules.html#modules_all_together) to understand exactly how it works.
+
+_Note: Most languages and package management solutions don't do this and therefore they don't suffer from the same issues._
+
+Package Managers, such as NPM and Yarn, fetches the libraries your project depends-on and puts the modules in place so that node can find them. This means that it must be structured according to the Node `require` algorithm.
+
+However, there's not always a unique way of structuring a `node_modules` directory. This means that Package Managers are able to use their own goals and heuristics to achieve the desired result for example "miminise duplication" might be a goal.
 
 ## Phantoms
 
 > A phantom dependency occurs when a project uses a package that isn't defined within the project's package.json file.
 
-- How? Example dependency structure that results in the problem.
+Let's look at a fairly simple and hopefully not too common way in which this can occur. Imagine you have installed React (or any library) globally using `npm install --global react`. Now every Node project on your machine can use it without first specifying the dependency in the `package.json`. This might work fine on your machine, but other developers and CI likely won't be happy. The solution to this is to avoid installing libraries globally.
+
+Now, let's look at a more subtle example.
+
 - Look at a diamond dependency pattern.
 - Can't represent this on disk. It's a tree structure. No way for subdirectories to join together.
 - We would have to duplicate the dependency to get a structure like so (example).

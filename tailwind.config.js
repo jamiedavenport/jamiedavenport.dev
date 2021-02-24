@@ -68,8 +68,8 @@ module.exports = {
             },
 
             blockquote: {
-              color: theme('colors.gray.300')
-            }
+              color: theme('colors.gray.300'),
+            },
           },
         },
       }),
