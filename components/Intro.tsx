@@ -15,18 +15,12 @@ interface Props {
   location: string
 }
 
-const Intro: React.FC<Props> = ({ location }) => {
+const Intro: React.FC<Props> = () => {
   return (
     <div className="text-4xl space-y-5 md:space-y-10">
       <Fact>
-        <b>Software Engineer</b> based in{' '}
-        <b className="whitespace-nowrap">{location}</b>
-      </Fact>
-      <Fact>
-        Currently at <b>Infinity Works</b>
-      </Fact>
-      <Fact>
-        Passionate about <b>Open Source</b>
+        <b>Software Engineer</b> living in the{' '}
+        <b className="whitespace-nowrap">UK</b>
       </Fact>
     </div>
   )
