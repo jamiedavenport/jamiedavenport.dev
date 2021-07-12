@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../components/Layout";
+import ComingSoonLayout from "../components/ComingSoonLayout";
 
 export default function Projects() {
-  return <Layout>Coming soon</Layout>;
+  return <ComingSoonLayout />;
 }

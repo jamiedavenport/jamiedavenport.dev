@@ -37,7 +37,7 @@ export default function Layout({ children }: Props) {
       </header>
       <main>{children}</main>
       <footer className="flex flex-row justify-between items-center">
-        <p>Made with plenty of ☕️ and 💕</p>
+        <p>Made with plenty of 💕 and ☕️</p>
         <div>Social Icons</div>
       </footer>
     </div>
