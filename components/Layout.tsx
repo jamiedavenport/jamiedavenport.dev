@@ -15,14 +15,14 @@ export default function Layout({ children }: Props) {
         <link rel="icon" href="/favicon.png" />
         <title>Jamie Davenport</title>
       </Head>
-      <div className="p-4 max-w-4xl mx-auto space-y-10">
-        <header className="flex flex-row justify-between items-center">
+      <div className="p-4 max-w-4xl mx-auto space-y-16">
+        <header className="flex flex-col md:flex-row space-y-4 md:justify-between md:items-center md:space-y-0">
           <Link href="/">
             <a>
               <Logo />
             </a>
           </Link>
-          <nav>
+          <nav className="flex space-y-4 flex-col md:flex-row md:space-x-4 md:items-center md:space-y-0">
             <ul className="flex flex-row space-x-4 items-center">
               <li>
                 <Link href="/">
@@ -39,6 +39,8 @@ export default function Layout({ children }: Props) {
                   <a>Projects</a>
                 </Link>
               </li>
+            </ul>
+            <ul className="flex flex-row space-x-4 items-center">
               {accounts.map(({ name, url, logo }) => (
                 <li key={name}>
                   <a href={url} target="_blank" rel="noopener noreferrer">
@@ -50,7 +52,7 @@ export default function Layout({ children }: Props) {
           </nav>
         </header>
         <main>{children}</main>
-        <footer className="flex flex-row justify-between items-center">
+        <footer className="flex flex-col md:flex-row space-y-4 md:justify-between md:items-center md:space-y-0">
           <p>Made with plenty of 💕 and ☕️</p>
           <ul className="flex flex-row space-x-4 items-center">
             {accounts.map(({ name, url }) => (
