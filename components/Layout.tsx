@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "./Logo";
 import Link from "next/link";
+import GithubIcon from "./icons/GithubIcon";
+import accounts from "../lib/accounts";
 
 type Props = {
   children?: React.ReactNode;
@@ -16,7 +18,7 @@ export default function Layout({ children }: Props) {
           </a>
         </Link>
         <nav>
-          <ul className="flex flex-row space-x-4">
+          <ul className="flex flex-row space-x-4 items-center">
             <li>
               <Link href="/">
                 <a>Home</a>
@@ -32,13 +34,28 @@ export default function Layout({ children }: Props) {
                 <a>Projects</a>
               </Link>
             </li>
+            {accounts.map(({ name, url, logo }) => (
+              <li key={name}>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {logo}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </header>
       <main>{children}</main>
       <footer className="flex flex-row justify-between items-center">
         <p>Made with plenty of 💕 and ☕️</p>
-        <div>Social Icons</div>
+        <ul className="flex flex-row space-x-4 items-center">
+          {accounts.map(({ name, url }) => (
+            <li key={name}>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {name}
+              </a>
+            </li>
+          ))}
+        </ul>
       </footer>
     </div>
   );
