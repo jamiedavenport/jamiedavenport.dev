@@ -13,6 +13,7 @@ export default function Layout({ children }: Props) {
     <>
       <Head>
         <link rel="icon" href="/favicon.png" />
+        <title>Jamie Davenport</title>
       </Head>
       <div className="p-4 max-w-4xl mx-auto space-y-10">
         <header className="flex flex-row justify-between items-center">
