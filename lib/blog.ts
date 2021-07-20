@@ -4,23 +4,17 @@ import { bundleMDX } from "mdx-bundler";
 import matter from "gray-matter";
 import { remarkMdxImages } from "remark-mdx-images";
 import rehypePrism from "@mapbox/rehype-prism";
-import visit from "unist-util-visit";
+import { rehypeSyntaxClassNames } from "./rehype";
+import * as yup from "yup";
 
 const postsPath = path.join(process.cwd(), "posts");
 
-const tokenClassNames = {
-  tag: "text-code-red",
-  "attr-name": "text-code-yellow",
-  "attr-value": "text-code-green",
-  deleted: "text-code-red",
-  inserted: "text-code-green",
-  punctuation: "text-code-white",
-  keyword: "text-code-purple",
-  string: "text-code-green",
-  function: "text-code-blue",
-  boolean: "text-code-red",
-  comment: "text-gray-400 italic",
-};
+const frontmatterSchema = yup.object().shape({
+  title: yup.string().required(),
+  description: yup.string().required(),
+});
+
+export type PostFrontmatter = yup.Asserts<typeof frontmatterSchema>;
 
 export type PostMeta = {
   slug: string;
@@ -44,21 +38,12 @@ export const getPost = async (slug: string): Promise<PostSource> => {
     xdmOptions: (options) => {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        remarkMdxImages,
+        remarkMdxImages as any,
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypePrism,
-        () => {
-          return (tree) => {
-            visit(tree, "element", (node) => {
-              const [token, type] = (node.properties as any).className || [];
-              if (token === "token") {
-                (node.properties as any).className = [tokenClassNames[type]];
-              }
-            });
-          };
-        },
+        rehypeSyntaxClassNames,
       ];
 
       return options;
@@ -76,11 +61,15 @@ export const getPost = async (slug: string): Promise<PostSource> => {
     },
   });
 
+  const frontmatter: PostFrontmatter = frontmatterSchema.validateSync(
+    mdx.frontmatter
+  );
+
   return {
     code: mdx.code,
     meta: {
-      slug: "",
-      ...mdx.frontmatter,
+      slug,
+      ...frontmatter,
     },
   }; // TODO: Validate the frontmatter object and narrow the type
 };

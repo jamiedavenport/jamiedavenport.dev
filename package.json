@@ -21,10 +21,14 @@
     "next-seo": "^4.26.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "remark-mdx-images": "^1.0.3"
+    "remark-mdx-images": "^1.0.3",
+    "unified": "^10.0.0",
+    "unist-util-visit": "2.0.3",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.12",
+    "@types/hast": "^2.3.2",
     "@types/react": "17.0.14",
     "autoprefixer": "^10.3.1",
     "eslint": "7.30.0",
