@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 export default function ComingSoonLayout() {
   return (
-    <Layout>
+    <Layout title="Coming soon" description="This page is a work in progress">
       <div className="flex justify-center">
         <ComingSoon />
       </div>
