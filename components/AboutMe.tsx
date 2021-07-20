@@ -1,3 +1,5 @@
+import WorkInProgress from "./WorkInProgress";
+
 const email = "hey@jamiedavenport.dev";
 
 export default function AboutMe() {
@@ -5,6 +7,7 @@ export default function AboutMe() {
     <>
       <h1 className="text-4xl font-bold mb-10">👋 Hey, I&apos;m Jamie</h1>
       <div className="space-y-5">
+        <WorkInProgress />
         <p className="text-lg">
           I am a Software Engineer based in London, UK. Currently changing the
           way the world deals with death at Farewill. Previously I worked at
