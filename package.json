@@ -11,12 +11,17 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "esbuild": "^0.12.15",
     "fathom-client": "^3.0.0",
+    "fs-extra": "^10.0.0",
+    "gray-matter": "^4.0.3",
+    "mdx-bundler": "^5.1.0",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.12",
     "@types/react": "17.0.14",
     "autoprefixer": "^10.3.1",
     "eslint": "7.30.0",
