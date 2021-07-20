@@ -3,6 +3,7 @@ import { getPosts, PostMeta } from "@/lib/blog";
 import { GetStaticProps } from "next";
 import React from "react";
 import NextLink from "next/link";
+import format from "date-fns/format";
 
 type Props = {
   posts: PostMeta[];
@@ -20,7 +21,10 @@ export default function Blog({ posts }: Props) {
           <li key={post.slug}>
             <NextLink href={`/blog/${post.slug}`}>
               <a>
-                <h2 className="text-xl font-bold">{post.title}</h2>
+                <h2 className="text-xl font-bold mb-1">{post.title}</h2>
+                <p className="text-sm font-bold text-gray-500 mb-1">
+                  {format(post.published ?? new Date(), "do MMMM yyyy")}
+                </p>
                 <p className="text-gray-700">{post.description}</p>
               </a>
             </NextLink>

@@ -20,6 +20,7 @@ export type PostMeta = {
   slug: string;
   title: string;
   description: string;
+  published?: Date;
 };
 
 export type PostSource = {

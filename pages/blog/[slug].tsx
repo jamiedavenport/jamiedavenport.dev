@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { components } from "@/components/mdx";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getPost, getPosts, PostSource } from "../../lib/blog";
+import format from "date-fns/format";
 
 type Props = {
   source: PostSource;
@@ -16,7 +17,10 @@ export default function BlogPost({ source }: Props) {
   return (
     <Layout title={meta.title} description={meta.description}>
       <div className="px-4 md:px-8">
-        <h1 className="text-3xl mb-5">{meta.title}</h1>
+        <h1 className="text-4xl font-bold mb-2">{meta.title}</h1>
+        <p className="text-sm font-bold text-gray-500 mb-10">
+          {format(meta.published ?? new Date(), "do MMMM yyyy")}
+        </p>
         <div className="prose">
           <Component components={components} />
         </div>
@@ -28,11 +32,11 @@ export default function BlogPost({ source }: Props) {
 export const getStaticProps: GetStaticProps = async (
   ctx: GetStaticPropsContext
 ) => {
-  const postSource = await getPost(`${ctx.params?.slug}`); // TODO: Add a guard around params and throw an error if it doesn't exist
+  const source = await getPost(`${ctx.params?.slug}`); // TODO: Add a guard around params and throw an error if it doesn't exist
 
   return {
     props: {
-      source: postSource,
+      source,
     },
   };
 };
