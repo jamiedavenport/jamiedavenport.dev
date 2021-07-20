@@ -10,13 +10,13 @@ type Props = {
 };
 
 export default function BlogPost({ source }: Props) {
-  const { code, frontmatter } = source;
+  const { code, meta } = source;
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <Layout title={frontmatter.title}>
+    <Layout title={meta.title}>
       <div className="px-4 md:px-8">
-        <h1 className="text-3xl mb-5">{frontmatter.title}</h1>
+        <h1 className="text-3xl mb-5">{meta.title}</h1>
         <div className="prose">
           <Component components={components} />
         </div>

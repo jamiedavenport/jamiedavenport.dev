@@ -22,7 +22,7 @@ const tokenClassNames = {
   comment: "text-gray-400 italic",
 };
 
-export type PostFrontMatter = {
+export type PostMeta = {
   slug: string;
   title: string;
   description: string;
@@ -30,7 +30,7 @@ export type PostFrontMatter = {
 
 export type PostSource = {
   code: string;
-  frontmatter: PostFrontMatter;
+  meta: PostMeta;
 };
 
 export const getPost = async (slug: string): Promise<PostSource> => {
@@ -76,10 +76,16 @@ export const getPost = async (slug: string): Promise<PostSource> => {
     },
   });
 
-  return mdx as any; // TODO: Validate the frontmatter object and narrow the type
+  return {
+    code: mdx.code,
+    meta: {
+      slug: "",
+      ...mdx.frontmatter,
+    },
+  }; // TODO: Validate the frontmatter object and narrow the type
 };
 
-export const getPosts = async (): Promise<PostFrontMatter[]> => {
+export const getPosts = async (): Promise<PostMeta[]> => {
   const rawFiles = await readdir(postsPath);
 
   const files = rawFiles.map(async (slug) => {
