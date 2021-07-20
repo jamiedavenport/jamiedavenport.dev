@@ -5,15 +5,16 @@ import Logo from "./Logo";
 import accounts from "../lib/accounts";
 
 type Props = {
+  title?: string;
   children?: React.ReactNode;
 };
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, title }: Props) {
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.png" />
-        <title>Jamie Davenport</title>
+        <title>{title ?? "Jamie Davenport"}</title>
       </Head>
       <div className="p-4 max-w-4xl mx-auto space-y-16">
         <header className="flex flex-col md:flex-row space-y-4 md:justify-between md:items-center md:space-y-0">

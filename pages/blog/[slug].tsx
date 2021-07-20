@@ -9,11 +9,12 @@ type Props = {
 };
 
 export default function BlogPost({ source }: Props) {
-  const { code } = source;
+  const { code, frontmatter } = source;
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <Layout>
+    <Layout title={frontmatter.title}>
+      <h1 className="text-3xl mb-5">{frontmatter.title}</h1>
       <Component />
     </Layout>
   );
