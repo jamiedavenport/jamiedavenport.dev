@@ -25,7 +25,9 @@ export const getStaticProps: GetStaticProps = async (
   const postSource = await getPost(`${ctx.params?.slug}`); // TODO: Add a guard around params and throw an error if it doesn't exist
 
   return {
-    props: postSource,
+    props: {
+      source: postSource,
+    },
   };
 };
 
