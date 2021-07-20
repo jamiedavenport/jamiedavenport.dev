@@ -1,6 +1,7 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
-import Layout from "../../components/Layout";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import Layout from "@/components/Layout";
+import { components } from "@/components/mdx";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getPost, getPosts, PostSource } from "../../lib/blog";
 
@@ -14,8 +15,12 @@ export default function BlogPost({ source }: Props) {
 
   return (
     <Layout title={frontmatter.title}>
-      <h1 className="text-3xl mb-5">{frontmatter.title}</h1>
-      <Component />
+      <div className="px-4 md:px-8">
+        <h1 className="text-3xl mb-5">{frontmatter.title}</h1>
+        <div className="prose">
+          <Component components={components} />
+        </div>
+      </div>
     </Layout>
   );
 }
