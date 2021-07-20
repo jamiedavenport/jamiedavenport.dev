@@ -1,21 +1,28 @@
 import React from "react";
 import Link from "next/link";
-import Head from "next/head";
 import Logo from "./Logo";
 import accounts from "../lib/accounts";
+import { NextSeo } from "next-seo";
 
 type Props = {
-  title?: string;
+  title: string;
+  description: string;
   children?: React.ReactNode;
 };
 
-export default function Layout({ children, title }: Props) {
+export default function Layout({ children, title, description }: Props) {
   return (
     <>
-      <Head>
-        <link rel="icon" href="/favicon.png" />
-        <title>{title ?? "Jamie Davenport"}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "/favicon.png",
+          },
+        ]}
+      />
       <div className="p-4 max-w-4xl mx-auto space-y-16">
         <header className="flex flex-col md:flex-row space-y-4 md:justify-between md:items-center md:space-y-0">
           <Link href="/">

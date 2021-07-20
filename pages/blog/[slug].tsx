@@ -14,7 +14,7 @@ export default function BlogPost({ source }: Props) {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <Layout title={meta.title}>
+    <Layout title={meta.title} description={meta.description}>
       <div className="px-4 md:px-8">
         <h1 className="text-3xl mb-5">{meta.title}</h1>
         <div className="prose">

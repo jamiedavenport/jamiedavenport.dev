@@ -10,7 +10,10 @@ type Props = {
 
 export default function Blog({ posts }: Props) {
   return (
-    <Layout>
+    <Layout
+      title="Latest posts"
+      description="Latest blog posts by Jamie Davenport"
+    >
       <h1 className="text-4xl font-bold mb-10">Latest posts</h1>
       <ul>
         {posts.map((post) => (

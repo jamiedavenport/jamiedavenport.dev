@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout title="Jamie Davenport" description="Software Engineer">
       <AboutMe />
     </Layout>
   );
