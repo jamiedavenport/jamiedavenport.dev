@@ -10,6 +10,8 @@ export type Account = {
   logo: React.ReactNode;
 };
 
+export const twitterUsername = "jamiedavenport_";
+
 const accounts: Account[] = [
   {
     name: "Github",
@@ -18,7 +20,7 @@ const accounts: Account[] = [
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/jamiedavenport_",
+    url: `https://twitter.com/${twitterUsername}`,
     logo: <TwitterIcon />,
   },
   {
